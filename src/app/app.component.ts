@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'too-neuf';
+
+  constructor(
+    private router: Router) {};
+  
+
+  ngOnInit() {
+  }
+
+
+  onActivate(event) {
+    window.scroll(0, 0);
+
+  }
 }
+
+
+
+
