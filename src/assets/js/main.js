@@ -760,19 +760,7 @@
 
 
     
-    //  instagramFeed
-
-    $.instagramFeed({
-        'username': 'portfolio.devitems',
-        'container': "#instagramFeed",
-        'display_profile': false,
-        'display_biography': false,
-        'display_gallery': true,
-        'styling': false,
-        'items': 6,
-        "image_size": "400",
-        'margin': 5
-    });
+    
 
         
     /*--- showlogin toggle function ----*/
@@ -786,18 +774,7 @@
     });
 
 
-    /*================================
-        YTplayer Video Active
-    ================================*/
-	$(".youtube-bg").YTPlayer({
-        videoURL:"https://youtu.be/elOLEDKFbf0",
-        containment:'.youtube-bg',
-        mute:true,
-        loop:true,
-        showControls: false
-        
-    });
-    
+ 
     
     
     

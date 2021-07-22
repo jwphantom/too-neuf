@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-shop',
+  templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ShopComponent implements OnInit {
 
   constructor(private title: Title) { }
 
   ngOnInit() {
 
-    this.title.setTitle("TOO NEUF - Home");
+    this.title.setTitle("TOO NEUF - Boutique");
 
     this.loadScript('../assets/js/vendor/modernizr-2.8.3.min.js');
     this.loadScript('../assets/js/vendor/jquery-3.5.1.min.js');
@@ -41,7 +41,5 @@ export class HomeComponent implements OnInit {
     script.defer = true;
     body.appendChild(script);
   }
-
-
 
 }
