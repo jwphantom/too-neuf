@@ -16,7 +16,7 @@ export class ProduitService {
         ["Notre thé corps express 100% naturel et bien plus performant que le thé corps simple agit dans votre organisme en coupe faim et brûleur de graisses. De plus il lutte contre la reprise du poids et brûle en moyenne 8kg en 20 jours "],
       mois_ajout: 'Mar',
       annee_ajout: '20',
-      is_var: true,
+      is_size: false,
       variantes: [
         {
           couleur: 'white',
@@ -52,7 +52,19 @@ export class ProduitService {
           ["Notre thé corps express 100% naturel et bien plus performant que le thé corps simple agit dans votre organisme en coupe faim et brûleur de graisses. De plus il lutte contre la reprise du poids et brûle en moyenne 8kg en 20 jours "],
         mois_ajout: 'Mar',
         annee_ajout: '20',
-        is_var: true,
+        is_size: false,
+        variantes: [
+          {
+            couleur: 'white',
+            image: 'cup-white',
+            price: '12',
+          },
+          {
+            couleur: 'black',
+            image: 'cup-black',
+            price: '12',
+          }
+        ]
       
       },
       {
@@ -65,18 +77,7 @@ export class ProduitService {
           ["Notre thé corps express 100% naturel et bien plus performant que le thé corps simple agit dans votre organisme en coupe faim et brûleur de graisses. De plus il lutte contre la reprise du poids et brûle en moyenne 8kg en 20 jours "],
         mois_ajout: 'Mar',
         annee_ajout: '20',
-        is_var: true,
-        size: [
-          {
-            i: 'S',
-          },
-          {
-            i: 'M',
-          },
-          {
-            i: 's',
-          },
-        ],
+        is_size: true,
         variantes: [
           {
             couleur: 'white',

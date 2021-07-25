@@ -18,6 +18,8 @@ export class ProductComponent implements OnInit {
   variantes: any[];
   size: String;
   color: String;
+  is_size: Boolean;
+
 
 
 
@@ -45,6 +47,7 @@ export class ProductComponent implements OnInit {
     this.max_price = this.produitService.getProduitById(+id).max_price;
     this.short_name = this.produitService.getProduitById(+id).short_name;
     this.variantes = this.produitService.getProduitById(+id).variantes;
+    this.is_size = this.produitService.getProduitById(+id).is_size;
 
 
 
