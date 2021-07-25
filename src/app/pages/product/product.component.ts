@@ -14,6 +14,12 @@ export class ProductComponent implements OnInit {
   name: String;
   min_price: String;
   max_price: String;
+  short_name : String;
+  variantes: any[];
+  size: String;
+  color: String;
+
+
 
   cookiCart: any[];
   type: String;
@@ -28,12 +34,18 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
 
+    this.size = "S"
+    this.color = "Blanc"
+
+
     const id = this.route.snapshot.params['id'];
 
     this.name = this.produitService.getProduitById(+id).name;
     this.min_price = this.produitService.getProduitById(+id).min_price;
     this.max_price = this.produitService.getProduitById(+id).max_price;
-    
+    this.short_name = this.produitService.getProduitById(+id).short_name;
+    this.variantes = this.produitService.getProduitById(+id).variantes;
+
 
 
     this.title.setTitle("TOONEUF - Produits -" + this.name);
@@ -64,6 +76,18 @@ export class ProductComponent implements OnInit {
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+  }
+
+  changeSize(size : String){
+
+    this.size = size;
+
+  }
+
+  changeColor(color : String){
+
+    this.color = color;
+
   }
   
 }

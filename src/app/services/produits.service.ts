@@ -16,7 +16,30 @@ export class ProduitService {
         ["Notre thé corps express 100% naturel et bien plus performant que le thé corps simple agit dans votre organisme en coupe faim et brûleur de graisses. De plus il lutte contre la reprise du poids et brûle en moyenne 8kg en 20 jours "],
       mois_ajout: 'Mar',
       annee_ajout: '20',
-      is_pack: true,
+      is_var: true,
+      variantes: [
+        {
+          couleur: 'white',
+          image: 'cap-white',
+          price: '12',
+        },
+        {
+          couleur: 'black',
+          image: 'cap-black',
+          price: '12',
+        },
+        {
+          couleur: 'blue',
+          image: 'cap-blue',
+          price: '12',
+        },
+        {
+          couleur: 'red',
+          image: 'cap-red',
+          price: '12',
+        }
+      ]
+      
     
     },
     {
@@ -29,7 +52,7 @@ export class ProduitService {
           ["Notre thé corps express 100% naturel et bien plus performant que le thé corps simple agit dans votre organisme en coupe faim et brûleur de graisses. De plus il lutte contre la reprise du poids et brûle en moyenne 8kg en 20 jours "],
         mois_ajout: 'Mar',
         annee_ajout: '20',
-        is_pack: true,
+        is_var: true,
       
       },
       {
@@ -42,7 +65,40 @@ export class ProduitService {
           ["Notre thé corps express 100% naturel et bien plus performant que le thé corps simple agit dans votre organisme en coupe faim et brûleur de graisses. De plus il lutte contre la reprise du poids et brûle en moyenne 8kg en 20 jours "],
         mois_ajout: 'Mar',
         annee_ajout: '20',
-        is_pack: true,
+        is_var: true,
+        size: [
+          {
+            i: 'S',
+          },
+          {
+            i: 'M',
+          },
+          {
+            i: 's',
+          },
+        ],
+        variantes: [
+          {
+            couleur: 'white',
+            image: 'tshirt-white',
+            price: '12',
+          },
+          {
+            couleur: 'black',
+            image: 'tshirt-black',
+            price: '12',
+          },
+          {
+            couleur: 'blue',
+            image: 'tshirt-blue',
+            price: '12',
+          },
+          {
+            couleur: 'red',
+            image: 'tshirt-red',
+            price: '12',
+          }
+        ]
       
       },
     
