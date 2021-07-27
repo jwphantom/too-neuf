@@ -561,8 +561,8 @@ form input::placeholder, form textarea::placeholder {
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="range"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="color"]:focus, textarea:focus, select:focus, select:focus, textarea:focus {
-  color: #dcb14a;
-  border-color: #dcb14a;
+  color: black;
+  border-color: black;
 }
 
 input[type="checkbox"] {
@@ -5374,11 +5374,11 @@ input[type="checkbox"] {
   left: 11px;
 }
 
-@media only screen and (max-width: 575px) {
+/* @media only screen and (max-width: 575px) {
   .quickview-button {
     margin-top: 10px;
   }
-}
+} */
 
 .variations select {
   width: 100%;
@@ -7665,7 +7665,7 @@ h3.cart-page-title {
           align-items: center;
 }
 
-@media only screen and (max-width: 575px) {
+/* @media only screen and (max-width: 575px) {
   .quickview-action-wrap .quickview-cart-box {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -7673,7 +7673,7 @@ h3.cart-page-title {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-}
+} */
 
 .quickview-action-wrap .quickview-quality {
   border: 1px solid #ddd;
@@ -9051,6 +9051,30 @@ blockquote::before {
   display: inline-block;
 }
 
+
+/* text personalisé */
+
+.text-personalize{
+  position:absolute;
+  top:220px; 
+  z-index:2;
+  font-size:18px;
+  width: 100%;
+
+}
+
+
+@media screen and (max-width: 580px){
+  .text-personalize{
+    position:absolute;
+    top:140px; 
+    z-index:2;
+    font-size:18px;
+    width: 100%;
+    white-space: pre-line;
+  
+  }
+}
 
 
 

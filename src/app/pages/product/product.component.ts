@@ -20,6 +20,18 @@ export class ProductComponent implements OnInit {
   color: String;
   is_size: Boolean;
 
+  t_perso: string = 'Bonjour';
+
+  t_color : String = 'black';
+
+  t_weight : Boolean = false;
+  t_c_weight : Boolean = false;
+
+  t_style : Boolean = false;
+  t_c_style : Boolean = false;
+
+  is_p : Boolean = false;
+
 
 
 
@@ -88,9 +100,32 @@ export class ProductComponent implements OnInit {
   }
 
   changeColor(color : String){
-
     this.color = color;
+  }
 
+  change_t_Color(color : string){
+    //getted from event
+    //console.log(id);
+    //getted from binding
+  }
+
+  change_t_w(param : Boolean){
+
+    this.t_weight = param;
+    this.t_c_weight = !this.t_c_weight;
+
+  }
+
+  change_t_f(param : Boolean){
+
+    this.t_style = param;
+    this.t_c_style = !this.t_c_style;
+
+  }
+
+  is_open(param : boolean){
+    this.is_p = param;
+    console.log('yo');
   }
   
 }

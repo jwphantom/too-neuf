@@ -40,17 +40,39 @@
                             <div class="product-details-images-2 slider-lg-image-2">
 
                                 <div class="" *ngFor="let vari of variantes">
-                                    <div class="">
-                                        <a href="assets/images/product/{{vari.image}}.png" class="poppu-img">
-                                            <img src="assets/images/product/{{vari.image}}.png" class="img-fluid" alt="">
+                                    <div style="position:relative;" class="">
+                                        <a href="assets/images/product/{{vari.image}}.png" class="poppu-img"
+                                            style="z-index:1">
+                                            <img src="assets/images/product/{{vari.image}}.png" class="img-fluid"
+                                                alt="">
                                         </a>
+                                        <div class="text-personalize">
+                                            <div style="text-align: center; width: 40%; margin: 0 auto;">
+                                                <p
+                                                    [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
+                                                    {{ t_perso }}</p>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <!-- <div style="position:relative; height:400px">
+                                        <div style="position:absolute;z-index:1">
+                                           <img src="assets/images/product/cap-white.png">
+                                        </div>
+                                        <div style="position:absolute;top:270px; width:600px; height:400px; z-index:2;font-size:18px">
+                                           <div style="text-align: center;">
+                                            <b>Ma maison...</b>
+                                           </div>
+                                         </div> 
+                                     </div> -->
                                 </div>
 
                             </div>
                             <div class="product-details-thumbs-2 slider-thumbs-2">
-                                <div class="sm-image" *ngFor="let vari of variantes"><img src="assets/images/product/{{ vari.image }}.png" style="width: 100px; height: 100px;"  alt="product image thumb"></div>
-                                
+                                <div class="sm-image" *ngFor="let vari of variantes"><img
+                                        src="assets/images/product/{{ vari.image }}.png"
+                                        style="width: 100px; height: 100px;" alt="product image thumb"></div>
+
                             </div>
                         </div>
                         <!--// Product Details Left -->
@@ -66,7 +88,7 @@
 
                             <div class="product-size-wrapper mt-20" *ngIf="is_size">
                                 <div class="tab-content d-flex">
-                                    <label class="mr-2">Size</label> 
+                                    <label class="mr-2">Size</label>
                                     <div class="tab-pane fade show active" id="tab_list_l">
                                         {{size}}
                                     </div>
@@ -80,19 +102,23 @@
 
                                 <ul class="nav product-size-menu" role="tablist" *ngIf="is_size">
                                     <li class="tab__item nav-item active">
-                                        <a class="nav-link active" data-toggle="tab"  role="tab" (click)="changeSize('S')">S</a>
+                                        <a class="nav-link active" data-toggle="tab" role="tab"
+                                            (click)="changeSize('S')">S</a>
                                     </li>
                                     <li class="tab__item nav-item">
                                         <a class="nav-link" data-toggle="tab" role="tab" (click)="changeSize('M')">M</a>
                                     </li>
                                     <li class="tab__item nav-item">
-                                        <a class="nav-link " data-toggle="tab" role="tab" (click)="changeSize('L')">L</a>
+                                        <a class="nav-link " data-toggle="tab" role="tab"
+                                            (click)="changeSize('L')">L</a>
                                     </li>
                                     <li class="tab__item nav-item ">
-                                        <a class="nav-link " data-toggle="tab" role="tab" (click)="changeSize('XL')">XL</a>
+                                        <a class="nav-link " data-toggle="tab" role="tab"
+                                            (click)="changeSize('XL')">XL</a>
                                     </li>
                                     <li class="tab__item nav-item">
-                                        <a class="nav-link " data-toggle="tab" role="tab" (click)="changeSize('2XL')">2XL</a>
+                                        <a class="nav-link " data-toggle="tab" role="tab"
+                                            (click)="changeSize('2XL')">2XL</a>
                                     </li>
                                 </ul>
                             </div>
@@ -104,16 +130,17 @@
                                     <div class="tab-pane fade active" id="tab_list_white">
                                         {{color}}
                                     </div>
-                                    
+
                                 </div>
 
                                 <ul class="nav product-color-menu" role="tablist">
-                        
-                                    <li *ngFor="let vari of variantes" class="tab__item nav-item" (click)="changeColor(vari.couleur)">
+
+                                    <li *ngFor="let vari of variantes" class="tab__item nav-item"
+                                        (click)="changeColor(vari.couleur)">
                                         <span class="dot-{{vari.couleur}}"></span>
                                     </li>
-                                    
-                                    
+
+
                                 </ul>
 
                             </div>
@@ -129,35 +156,79 @@
 
                                     <div class="quickview-button">
                                         <div class="quickview-cart button">
-                                            <a  class="btn--lg btn--black font-weight--reguler text-white">Add to cart</a>
+                                            <a class="btn--lg btn--black font-weight--reguler text-white">Add to
+                                                cart</a>
                                         </div>
-                                        
+
                                     </div>
+                                </div>
+                            </div>
+                            
+
+                            <div *ngIf="!is_p" class="place-order mt-30">
+                                <a (click)="is_open(true)" class="btn--full btn--black btn--lg text-center">Personnaliser Votre {{ name }}</a>
+                            </div>
+
+                            <div *ngIf="is_p">
+
+                                <div class="quickview-action-wrap mt-30">
+                                    <label>Texte</label>
+                                    <input type="text" class="form-control" maxlength="30" [(ngModel)]="t_perso">
+                                </div>
+
+                                <div class="variable-color-selector mt-20 variations">
+                                    <label>Couleur</label>
+                                    <select [(ngModel)]="t_color">
+                                        <option value="black" class="attached enabled">Noire</option>
+                                        <option value="white" class="attached enabled">Blanche</option>
+                                        <option value="red" class="attached enabled">Rouge</option>
+                                        <option value="blue" class="attached enabled">Bleu</option>
+                                    </select>
+                                </div>
+
+                                <div class="variable-color-selector mt-20 variations">
+                                    <label>Forme</label><br>
+                                    <a *ngIf="!t_c_weight" style="cursor: pointer;" (click)="change_t_w(true)"> <img
+                                            src="assets/images/icons/bold.svg" width="15"> </a>
+                                    <a *ngIf="t_c_weight" style="cursor: pointer;" (click)="change_t_w(false)"> <img
+                                            src="assets/images/icons/bold-click.svg" width="15"> </a>
+                                    &nbsp;&nbsp;
+
+                                    <a *ngIf="!t_c_style" style="cursor: pointer;" (click)="change_t_f(true)"> <img
+                                            src="assets/images/icons/italic.svg" width="15"> </a>
+                                    <a *ngIf="t_c_style" style="cursor: pointer;" (click)="change_t_f(false)"> <img
+                                            src="assets/images/icons/italic-click.svg" width="15"> </a>
+
+                                </div>
+
+                                <div class="place-order mt-30">
+                                    <a (click)="is_open(false)" class="btn--full btn--black btn--lg text-center">Fermer l'outil</a>
                                 </div>
 
                             </div>
 
-                            
+
+
                         </div>
                     </div>
                 </div>
 
 
-                
 
-                
+
+
 
             </div>
         </div>
 
     </div>
 
-    
-<!-- Product Area End -->
 
-<!--====================  footer area ====================-->
-<app-footer2></app-footer2>
-<!--====================  End of footer area  ====================-->
+    <!-- Product Area End -->
+
+    <!--====================  footer area ====================-->
+    <app-footer2></app-footer2>
+    <!--====================  End of footer area  ====================-->
 
 
 </div>

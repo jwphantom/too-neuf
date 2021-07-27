@@ -14,6 +14,7 @@ import { Header2Component } from './static/header2/header2.component';
 import { Footer2Component } from './static/footer2/footer2.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ProduitService } from './services/produits.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { ProduitService } from './services/produits.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
+
   ],
   providers: [
     ProduitService,
