@@ -32,6 +32,8 @@ export class ProductComponent implements OnInit {
 
   is_p : Boolean = false;
 
+  is_true : String = 'true';
+
 
 
 
@@ -123,9 +125,8 @@ export class ProductComponent implements OnInit {
 
   }
 
-  is_open(param : boolean){
+  perso_is_open(param : boolean){
     this.is_p = param;
-    console.log('yo');
   }
   
 }

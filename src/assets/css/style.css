@@ -9063,11 +9063,32 @@ blockquote::before {
 
 }
 
+.text-personalize-cup{
+  position:absolute;
+  top:240px; 
+  z-index:2;
+  font-size:18px;
+  width: 100%;
+  margin-left: -14px;
+
+}
+
+
 
 @media screen and (max-width: 580px){
   .text-personalize{
     position:absolute;
     top:140px; 
+    z-index:2;
+    font-size:18px;
+    width: 100%;
+    white-space: pre-line;
+  
+  }
+
+  .text-personalize-cup{
+    position:absolute;
+    top:160px; 
     z-index:2;
     font-size:18px;
     width: 100%;

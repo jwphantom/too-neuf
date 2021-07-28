@@ -46,13 +46,30 @@
                                             <img src="assets/images/product/{{vari.image}}.png" class="img-fluid"
                                                 alt="">
                                         </a>
-                                        <div class="text-personalize">
+                                        <div class="text-personalize-cup" *ngIf="short_name === 'cup'" >
                                             <div style="text-align: center; width: 40%; margin: 0 auto;">
                                                 <p
                                                     [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
                                                     {{ t_perso }}</p>
                                             </div>
                                         </div>
+
+                                        <div class="text-personalize" *ngIf="short_name === 'tshirt'" >
+                                            <div style="text-align: center; width: 40%; margin: 0 auto;">
+                                                <p
+                                                    [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
+                                                    {{ t_perso }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-personalize" *ngIf="short_name === 'cap'" >
+                                            <div style="text-align: center; width: 40%; margin: 0 auto;">
+                                                <p
+                                                    [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
+                                                    {{ t_perso }}</p>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <!-- <div style="position:relative; height:400px">
@@ -144,29 +161,8 @@
                                 </ul>
 
                             </div>
-
-
-                            <div class="quickview-action-wrap mt-30">
-                                <div class="quickview-cart-box">
-                                    <div class="quickview-quality">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="0">
-                                        </div>
-                                    </div>
-
-                                    <div class="quickview-button">
-                                        <div class="quickview-cart button">
-                                            <a class="btn--lg btn--black font-weight--reguler text-white">Add to
-                                                cart</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            
-
-                            <div *ngIf="!is_p" class="place-order mt-30">
-                                <a (click)="is_open(true)" class="btn--full btn--black btn--lg text-center">Personnaliser Votre {{ name }}</a>
+                            <div *ngIf="!is_p" class="place-order mt-30" style="width: 65%;">
+                                <a (click)="perso_is_open(true)" class="btn--full btn--black btn--lg text-center">Personnaliser Votre {{ name }}</a>
                             </div>
 
                             <div *ngIf="is_p">
@@ -201,11 +197,33 @@
 
                                 </div>
 
-                                <div class="place-order mt-30">
-                                    <a (click)="is_open(false)" class="btn--full btn--black btn--lg text-center">Fermer l'outil</a>
+                                <div class="place-order mt-30" style="width: 65%;">
+                                    <a (click)="perso_is_open(false)" class="btn--full btn--black btn--lg text-center">Fermer l'outil</a>
                                 </div>
 
                             </div>
+
+
+                            <div class="quickview-action-wrap mt-30">
+                                <div class="quickview-cart-box">
+                                    <div class="quickview-quality">
+                                        <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="0">
+                                        </div>
+                                    </div>
+
+                                    <div class="quickview-button">
+                                        <div class="quickview-cart button">
+                                            <a class="btn--lg btn--black font-weight--reguler text-white">Add to
+                                                cart</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            
 
 
 

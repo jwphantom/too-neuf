@@ -45,7 +45,7 @@ export class ProduitService {
     {
         id: 1,
         name: 'Tasse',
-        short_name: 'tasse',
+        short_name: 'cup',
         min_price: "25.00",
         max_price: "35.00",
         description:
