@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header2',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header2.component.scss']
 })
 export class Header2Component implements OnInit {
+
+  @Input() cart : number = 0;
+
 
   constructor() { }
 

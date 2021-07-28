@@ -10,6 +10,7 @@ export class ProduitService {
       id: 0,
       name: 'Casquette',
       short_name: 'cap',
+      price: "25.00",
       min_price: "25.00",
       max_price: "35.00",
       description:
@@ -46,6 +47,7 @@ export class ProduitService {
         id: 1,
         name: 'Tasse',
         short_name: 'cup',
+        price: "25.00",
         min_price: "25.00",
         max_price: "35.00",
         description:
@@ -71,6 +73,7 @@ export class ProduitService {
         id: 2,
         name: 'T-shirt',
         short_name: 'tshirt',
+        price: "25.00",
         min_price: "25.00",
         max_price: "35.00",
         description:

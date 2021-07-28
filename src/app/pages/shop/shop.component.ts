@@ -24,6 +24,8 @@ export class ShopComponent implements OnInit {
 
   ngOnInit() {
 
+    this.storeCart();
+
     this.title.setTitle("TOO NEUF - Boutique");
 
 
@@ -46,7 +48,6 @@ export class ShopComponent implements OnInit {
     this.loadScript('../assets/js/plugins/easyzoom.js');
     this.loadScript('../assets/js/plugins/images-loaded.min.js');
     this.loadScript('../assets/js/plugins/isotope.min.js');
-    this.loadScript('../assets/js/plugins/YTplayer.js');
     this.loadScript('../assets/js/plugins/wow.min.js');
     this.loadScript('../assets/js/main.js');
 
@@ -66,6 +67,18 @@ export class ShopComponent implements OnInit {
   onViewProduct(id : number){
 
     this.router.navigate(['/shop/product', id]);
+  }
+
+
+  storeCart(){
+
+    let cartLocal = localStorage.getItem('cart');
+    if (cartLocal) {
+      this.cart = JSON.parse(localStorage.getItem('cart'));
+    } else {
+      this.cart = [];
+
+    }
   }
 
 }

@@ -12,9 +12,10 @@ export class ProductComponent implements OnInit {
 
 
   name: String;
+  price: String;
   min_price: String;
   max_price: String;
-  short_name : String;
+  short_name: String;
   variantes: any[];
   size: String;
   color: String;
@@ -22,19 +23,15 @@ export class ProductComponent implements OnInit {
 
   t_perso: string = 'Bonjour';
 
-  t_color : String = 'black';
+  t_color: String = 'black';
 
-  t_weight : Boolean = false;
-  t_c_weight : Boolean = false;
+  t_weight: Boolean = false;
+  t_c_weight: Boolean = false;
 
-  t_style : Boolean = false;
-  t_c_style : Boolean = false;
+  t_style: Boolean = false;
+  t_c_style: Boolean = false;
 
-  is_p : Boolean = false;
-
-  is_true : String = 'true';
-
-
+  is_p: Boolean = false;
 
 
   cookiCart: any[];
@@ -44,26 +41,32 @@ export class ProductComponent implements OnInit {
 
   cart: Array<string> = [];
 
+  qty: number;
+
   constructor(private produitService: ProduitService,
     private route: ActivatedRoute,
     private title: Title) { }
 
   ngOnInit() {
 
+    this.storeCart();
+
+
     this.size = "S"
-    this.color = "Blanc"
+    this.color = "white"
 
 
     const id = this.route.snapshot.params['id'];
 
     this.name = this.produitService.getProduitById(+id).name;
-    this.min_price = this.produitService.getProduitById(+id).min_price;
-    this.max_price = this.produitService.getProduitById(+id).max_price;
+    this.price = this.produitService.getProduitById(+id).price;
     this.short_name = this.produitService.getProduitById(+id).short_name;
     this.variantes = this.produitService.getProduitById(+id).variantes;
     this.is_size = this.produitService.getProduitById(+id).is_size;
 
 
+
+    this.update_produit();
 
     this.title.setTitle("TOONEUF - Produits -" + this.name);
 
@@ -86,7 +89,7 @@ export class ProductComponent implements OnInit {
 
 
   public loadScript(url: string) {
-    const body = <HTMLDivElement> document.body;
+    const body = <HTMLDivElement>document.body;
     const script = document.createElement('script');
     script.innerHTML = '';
     script.src = url;
@@ -95,38 +98,175 @@ export class ProductComponent implements OnInit {
     body.appendChild(script);
   }
 
-  changeSize(size : String){
+  changeSize(size: String) {
 
     this.size = size;
+    this.update_produit();
 
   }
 
-  changeColor(color : String){
+  changeColor(color: String) {
     this.color = color;
+    this.update_produit();
+
   }
 
-  change_t_Color(color : string){
+  change_t_Color(color: string) {
     //getted from event
     //console.log(id);
     //getted from binding
   }
 
-  change_t_w(param : Boolean){
+  change_t_w(param: Boolean) {
 
     this.t_weight = param;
     this.t_c_weight = !this.t_c_weight;
+    this.update_produit();
+
 
   }
 
-  change_t_f(param : Boolean){
+  change_t_f(param: Boolean) {
 
     this.t_style = param;
     this.t_c_style = !this.t_c_style;
+    this.update_produit();
+
 
   }
 
-  perso_is_open(param : boolean){
+  perso_is_open(param: boolean) {
     this.is_p = param;
+    this.update_produit();
+
   }
-  
+
+  storeCart(){
+    console.log('yo');
+
+    let cartLocal = localStorage.getItem('cart');
+    if (cartLocal) {
+      this.cart = JSON.parse(localStorage.getItem('cart'));
+      console.log(this.cart);
+    } else {
+      this.cart = [];
+      console.log(this.cart);
+
+    }
+  }
+
+  addCart(produit) {
+
+    this.storeCart();
+
+    //console.log(this.qty);
+
+
+    let iCart;
+    let index;
+    let eCart;
+
+    if (this.cart.length <= 0) {
+      produit[0]['qty'] = 1;
+      this.cart.push(produit);
+      console.log(this.cart);
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+
+    } else {
+      for (let i = 0; i < this.cart.length; i++) {
+
+        if (this.cart[i][0]['id'] == produit[0]['id']) {
+          if (this.cart[i][0]['color'] == produit[0]['color'] && this.cart[i][0]['size'] == produit[0]['size']) {
+            iCart = i + 1;
+            index = i;
+          }
+          else{
+            eCart = 0;
+
+          }
+
+        }
+        else {
+          console.log(0);
+
+          // produit[0]['qty'] = 1;
+          // this.cart.push(produit);
+          // console.log(this.cart);
+          // this.cookieService.set('cart', JSON.stringify(this.cart))
+          // break;
+          eCart = 0;
+        }
+
+      }
+
+      if (iCart > 0) {
+        console.log("ic");
+        this.cart[index][0]['qty'] = this.cart[index][0]['qty'] + 1;
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        console.log(this.cart);
+
+
+      }
+      if (eCart == 0) {
+        produit[0]['qty'] = 1;
+        this.cart.push(produit);
+        console.log("eC");
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        console.log(this.cart);
+
+      }
+
+
+
+    }
+
+
+  }
+
+  update_produit() {
+
+    const id = this.route.snapshot.params['id'];
+
+
+    if (this.is_size) {
+      this.produit = [
+        {
+          id: id,
+          name: this.name,
+          short_name: this.short_name,
+          price: this.price,
+          size: this.size,
+          color: this.color,
+          t_perso: this.t_perso,
+          t_weight: this.t_weight,
+          t_style: this.t_style,
+
+
+        }
+      ];
+
+    }
+    else {
+      this.produit = [
+        {
+          id: id,
+          name: this.name,
+          short_name: this.short_name,
+          price: this.price,
+          size: 'NaN',
+          color: this.color,
+          var_image : this.short_name+'-'+this.color,
+          t_perso: this.t_perso,
+          t_weight: this.t_weight,
+          t_style: this.t_style,
+
+
+        }
+      ];
+
+    }
+
+
+  }
+
 }

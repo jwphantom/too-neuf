@@ -1,4 +1,4 @@
-<app-header2></app-header2>
+<app-header2 [cart]="cart.length"></app-header2>
 
 
 
@@ -100,7 +100,7 @@
 
                             <h5 class="font-weight--reguler mb-10">{{name}}</h5>
 
-                            <h3 class="price">${{min_price}} - ${{max_price}}</h3>
+                            <h3 class="price">${{price}}</h3>
 
 
                             <div class="product-size-wrapper mt-20" *ngIf="is_size">
@@ -161,7 +161,7 @@
                                 </ul>
 
                             </div>
-                            <div *ngIf="!is_p" class="place-order mt-30" style="width: 65%;">
+                            <div *ngIf="!is_p" class="place-order mt-30">
                                 <a (click)="perso_is_open(true)" class="btn--full btn--black btn--lg text-center">Personnaliser Votre {{ name }}</a>
                             </div>
 
@@ -197,7 +197,7 @@
 
                                 </div>
 
-                                <div class="place-order mt-30" style="width: 65%;">
+                                <div class="place-order mt-30" >
                                     <a (click)="perso_is_open(false)" class="btn--full btn--black btn--lg text-center">Fermer l'outil</a>
                                 </div>
 
@@ -208,13 +208,13 @@
                                 <div class="quickview-cart-box">
                                     <div class="quickview-quality">
                                         <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="0">
+                                            <input [(ngModel)]="qty" class="cart-plus-minus-box" type="text" name="qtybutton" >
                                         </div>
                                     </div>
 
                                     <div class="quickview-button">
                                         <div class="quickview-cart button">
-                                            <a class="btn--lg btn--black font-weight--reguler text-white">Add to
+                                            <a (click)="addCart(produit)" class="btn--lg btn--black font-weight--reguler text-white">Add to
                                                 cart</a>
                                         </div>
 
