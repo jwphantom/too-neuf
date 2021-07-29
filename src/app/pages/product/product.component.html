@@ -48,25 +48,28 @@
                                         </a>
                                         <div class="text-personalize-cup" *ngIf="short_name === 'cup'" >
                                             <div style="text-align: center; width: 40%; margin: 0 auto;">
-                                                <p
-                                                    [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
-                                                    {{ t_perso }}</p>
+                                                <p 
+                                                [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
+                                                'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
+                                                {{ t_perso }}</p>
                                             </div>
                                         </div>
 
                                         <div class="text-personalize" *ngIf="short_name === 'tshirt'" >
                                             <div style="text-align: center; width: 40%; margin: 0 auto;">
-                                                <p
-                                                    [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
-                                                    {{ t_perso }}</p>
+                                                <p 
+                                                [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
+                                                'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
+                                                {{ t_perso }}</p>
                                             </div>
                                         </div>
 
                                         <div class="text-personalize" *ngIf="short_name === 'cap'" >
                                             <div style="text-align: center; width: 40%; margin: 0 auto;">
-                                                <p
-                                                    [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal'}">
-                                                    {{ t_perso }}</p>
+                                                <p 
+                                                [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
+                                                'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
+                                                {{ t_perso }}</p>
                                             </div>
                                         </div>
 
@@ -184,17 +187,41 @@
 
                                 <div class="variable-color-selector mt-20 variations">
                                     <label>Forme</label><br>
-                                    <a *ngIf="!t_c_weight" style="cursor: pointer;" (click)="change_t_w(true)"> <img
+                                    <a *ngIf="!t_c_weight" style="cursor: pointer;" class="button_style" (click)="change_t_w(true)"> G </a>
+
+                                    <a *ngIf="t_c_weight" style="cursor: pointer;" class="button_style_click" (click)="change_t_w(false)"> G </a>
+
+                                    <!-- <a *ngIf="!t_c_weight" style="cursor: pointer;" (click)="change_t_w(true)"> <img
                                             src="assets/images/icons/bold.svg" width="15"> </a>
                                     <a *ngIf="t_c_weight" style="cursor: pointer;" (click)="change_t_w(false)"> <img
-                                            src="assets/images/icons/bold-click.svg" width="15"> </a>
-                                    &nbsp;&nbsp;
+                                            src="assets/images/icons/bold-click.svg" width="15"> </a> -->
 
-                                    <a *ngIf="!t_c_style" style="cursor: pointer;" (click)="change_t_f(true)"> <img
-                                            src="assets/images/icons/italic.svg" width="15"> </a>
-                                    <a *ngIf="t_c_style" style="cursor: pointer;" (click)="change_t_f(false)"> <img
-                                            src="assets/images/icons/italic-click.svg" width="15"> </a>
+                                    <a *ngIf="!t_c_style" style="cursor: pointer;" class="button_style italic" (click)="change_t_s(true)"> I </a>
+                                    <a *ngIf="t_c_style" style="cursor: pointer;" class="button_style_click italic" (click)="change_t_s(false)"> I</a>
 
+
+                                    <a *ngIf="!t_c_deco" style="cursor: pointer;" class="button_style deco" (click)="change_t_d(true)"> S </a>
+                                    <a *ngIf="t_c_deco" style="cursor: pointer;" class="button_style_click deco" (click)="change_t_d(false)"> S</a>
+
+                                </div>
+
+                                <div class="variable-color-selector mt-20 variations">
+                                    <label>Police</label>
+                                    <select [(ngModel)]="t_family">
+                                        <option value="Times New Roman" class="attached enabled">Times New Roman</option>
+                                        <option value="Impact" class="attached enabled">Impact</option>
+                                        <option value="Verdana" class="attached enabled">Verdana</option>
+                                        <option value="Trebuchet" class="attached enabled">Trebuchet</option>
+                                        <option value="Gill Sans" class="attached enabled">Gill Sans</option>
+                                        <option value="Courier New" class="attached enabled">Courier New</option>
+
+                                        <option value="Lucida Sans" class="attached enabled">Lucida Sans</option>
+                                        <option value="Cambria" class="attached enabled">Cambria</option>
+                                        <option value="Cochin" class="attached enabled">Cochin</option>
+                                        <option value="Georgia" class="attached enabled">Georgia</option>
+
+                                
+                                    </select>
                                 </div>
 
                                 <div class="place-order mt-30" >
@@ -221,6 +248,9 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <br><br>
+
                             
 
                             

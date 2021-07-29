@@ -3850,7 +3850,7 @@ input[type="checkbox"] {
 @media only screen and (max-width: 767px) {
   .single-hero-slider-five .inner-images .image-two {
     width: 200px;
-    bottom: -4px;
+    bottom: 20px;
   }
 }
 
@@ -9069,7 +9069,7 @@ blockquote::before {
   z-index:2;
   font-size:18px;
   width: 100%;
-  margin-left: -14px;
+  margin-left: -10px;
 
 }
 
@@ -9088,7 +9088,7 @@ blockquote::before {
 
   .text-personalize-cup{
     position:absolute;
-    top:160px; 
+    top:140px; 
     z-index:2;
     font-size:18px;
     width: 100%;
@@ -9097,6 +9097,32 @@ blockquote::before {
   }
 }
 
+
+.button_style{
+  font-size: 25px;
+  font-weight: bold;  
+  padding-left : 10px;
+  padding-right : 10px;
+}
+
+.button_style_click{
+  font-size: 25px;
+  font-weight: bold;  
+  background-color: gainsboro;
+  padding-left : 10px;
+  padding-right : 10px;
+}
+
+.italic{
+  font-weight: 300;
+  font-style: italic;
+  font-family: serif;
+}
+
+.deco{
+  font-weight: 300;
+  text-decoration: underline;
+}
 
 
 

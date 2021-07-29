@@ -31,6 +31,12 @@ export class ProductComponent implements OnInit {
   t_style: Boolean = false;
   t_c_style: Boolean = false;
 
+  t_deco: Boolean = false;
+  t_c_deco: Boolean = false;
+
+
+  t_family : String  = 'Impact';
+
   is_p: Boolean = false;
 
 
@@ -126,12 +132,26 @@ export class ProductComponent implements OnInit {
 
   }
 
-  change_t_f(param: Boolean) {
+  change_t_s(param: Boolean) {
 
     this.t_style = param;
     this.t_c_style = !this.t_c_style;
     this.update_produit();
 
+  }
+
+  change_t_d(param: Boolean) {
+
+    this.t_deco = param;
+    this.t_c_deco = !this.t_c_deco;
+    this.update_produit();
+
+  }
+
+  change_t_f(font: String) {
+
+    this.t_family = font;
+    this.update_produit();
 
   }
 
