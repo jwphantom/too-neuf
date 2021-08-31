@@ -1,275 +1,327 @@
 <app-header2 [cart]="cart.length"></app-header2>
 
 
+<div id="main-wrapper ">
 
-<!-- breadcrumb-area start -->
-<div class="breadcrumb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="row breadcrumb_box  align-items-center">
-                    <div class="col-lg-6 col-md-6 col-sm-6 text-center text-sm-left">
-                        <h2 class="breadcrumb-title">{{name}}</h2>
+    <div class="content_p">
+        <div class="container">·
+            <div class="row justify-content-center ">
+
+                <div class="col-md-1 col-xs-8">
+                    <div class="tools" >
+                        <div class="s_tools" >
+                            <img src="assets/images/product/tools/tshirt.png">
+                            <p>Produits</p>
+                        </div>
+
+                        <div class="s_tools" (click)="add_zone_text()">
+                            <img src="assets/images/product/tools/text.png">
+                            <p>Texte</p>
+                        </div>
+
+                        <div class="s_tools " (click)="modal_i()">
+                            <img src="assets/images/product/tools/upload.png">
+                            <p>Importer</p>
+                        </div>
                     </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6">
-                        <!-- breadcrumb-list start -->
-                        <ul class="breadcrumb-list text-center text-sm-right">
-                            <li class="breadcrumb-item"><a routerLink="/">Accueil</a></li>
-                            <li class="breadcrumb-item active"><a routerLink="/shop">Boutique</a></li>
-                        </ul>
-                        <!-- breadcrumb-list end -->
-                    </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- breadcrumb-area end -->
+
+                <div class="col-md-5  col-xs-12 view_p" style="position:relative;">
+                    <img src="assets/images/product/{{src_i_p}}.png" class="picture_product" draggable="false" alt="">
+
+                    <div class="text_border">
 
 
-<div id="main-wrapper">
-    <div class="site-wrapper-reveal">
+                        <!-- <p class="text_perso" cdkDragBoundary=".text_border" cdkDrag
+                            [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'yellow') ? 'yellow' : (t_color === 'orange') ? 'orange' :(t_color === 'violet') ? 'violet' :(t_color === 'BlueViolet') ? 'BlueViolet' :(t_color === 'Chocolate') ? 'Chocolate' :(t_color === 'DarkMagenta') ? 'DarkMagenta' :(t_color === 'gold') ? 'gold' :(t_color === 'indigo') ? 'indigo' :(t_color === 'olive') ? 'olive' :(t_color === 'Pink') ? 'Pink' :(t_color === 'red') ? 'red' : (t_color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
+                            'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
 
-        <div class="single-product-wrap section-space--pt_90 border-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
+                            {{t_perso}}
+                        </p> -->
 
-                        <!-- Product Details Left -->
-                        <div class="product-details-left">
-                            <div class="product-details-images-2 slider-lg-image-2">
+                        <p (click)="getPosition($event)"  *ngIf="active_t_p" class="text_perso" cdkDragBoundary=".text_border" cdkDrag
+                            [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'yellow') ? 'yellow' : (t_color === 'orange') ? 'orange' :(t_color === 'violet') ? 'violet' :(t_color === 'BlueViolet') ? 'BlueViolet' :(t_color === 'Chocolate') ? 'Chocolate' :(t_color === 'DarkMagenta') ? 'DarkMagenta' :(t_color === 'gold') ? 'gold' :(t_color === 'indigo') ? 'indigo' :(t_color === 'olive') ? 'olive' :(t_color === 'Pink') ? 'Pink' :(t_color === 'red') ? 'red' : (t_color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-size': (size_t) ? size_t+'px' : 'normal' ,'text-decoration': (t_deco === true) ? 'underline' : 'none',
+                            'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
 
-                                <div class="" *ngFor="let vari of variantes">
-                                    <div style="position:relative;" class="">
-                                        <a href="assets/images/product/{{vari.image}}.png" class="poppu-img"
-                                            style="z-index:1">
-                                            <img src="assets/images/product/{{vari.image}}.png" class="img-fluid"
-                                                alt="">
-                                        </a>
-                                        <div class="text-personalize-cup" *ngIf="short_name === 'cup'" >
-                                            <div style="text-align: center; width: 40%; margin: 0 auto;">
-                                                <p 
-                                                [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
-                                                'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
-                                                {{ t_perso }}</p>
-                                            </div>
-                                        </div>
+                            {{t_perso}}
+                        </p>
 
-                                        <div class="text-personalize" *ngIf="short_name === 'tshirt'" >
-                                            <div style="text-align: center; width: 40%; margin: 0 auto;">
-                                                <p 
-                                                [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
-                                                'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
-                                                {{ t_perso }}</p>
-                                            </div>
-                                        </div>
 
-                                        <div class="text-personalize" *ngIf="short_name === 'cap'" >
-                                            <div style="text-align: center; width: 40%; margin: 0 auto;">
-                                                <p 
-                                                [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'blue') ? 'blue': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
-                                                'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
-                                                {{ t_perso }}</p>
-                                            </div>
-                                        </div>
+                        <div class="file-upload-content">
+                            <div class="image-title-wrap" cdkDrag>
+                                <img class="file-upload-image" src="#" alt="your image" *ngIf="active_i_p"
+                                    [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
+                            </div>
+                        </div>
 
-                                    </div>
+                    </div>
 
-                                    <!-- <div style="position:relative; height:400px">
-                                        <div style="position:absolute;z-index:1">
-                                           <img src="assets/images/product/cap-white.png">
-                                        </div>
-                                        <div style="position:absolute;top:270px; width:600px; height:400px; z-index:2;font-size:18px">
-                                           <div style="text-align: center;">
-                                            <b>Ma maison...</b>
-                                           </div>
-                                         </div> 
-                                     </div> -->
+                </div>
+
+
+
+                <div class="col-md-4 offset-md-1 col-xs-3 widget">
+
+                    <div class="container" *ngIf="w_p_info">
+
+                        <span class="title">{{name}}</span><br>
+                        <span class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <hr>
+
+                        <span class="quality">
+                            <i class="fas fa-truck"></i>
+                            &nbsp;
+                            Livraison : 10 jours
+                        </span>
+                        <br>
+
+                        <div class="product-size-wrapper mt-20" *ngIf="is_size">
+                            <div class="tab-content d-flex">
+                                <label class="mr-2">Size</label>
+                                <div class="tab-pane fade show active" id="tab_list_l">
+                                    {{size}}
+                                </div>
+                                <div class="tab-pane fade" id="tab_list_m">
+                                    M
+                                </div>
+                                <div class="tab-pane fade" id="tab_list_s">
+                                    S
+                                </div>
+                            </div>
+
+                            <ul class="nav product-size-menu" role="tablist" *ngIf="is_size">
+                                <li class="tab__item nav-item active">
+                                    <a class="nav-link active" data-toggle="tab" role="tab"
+                                        (click)="changeSize('S')">S</a>
+                                </li>
+                                <li class="tab__item nav-item">
+                                    <a class="nav-link" data-toggle="tab" role="tab" (click)="changeSize('M')">M</a>
+                                </li>
+                                <li class="tab__item nav-item">
+                                    <a class="nav-link " data-toggle="tab" role="tab" (click)="changeSize('L')">L</a>
+                                </li>
+                                <li class="tab__item nav-item ">
+                                    <a class="nav-link " data-toggle="tab" role="tab" (click)="changeSize('XL')">XL</a>
+                                </li>
+                                <li class="tab__item nav-item">
+                                    <a class="nav-link " data-toggle="tab" role="tab"
+                                        (click)="changeSize('2XL')">2XL</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="product-color-wrapper mt-20">
+                            <div class="tab-content d-flex">
+                                <label class="mr-2">Color </label>
+                                <div class="tab-pane fade active" id="tab_list_white">
+                                    {{color}}
                                 </div>
 
                             </div>
-                            <div class="product-details-thumbs-2 slider-thumbs-2">
-                                <div class="sm-image" *ngFor="let vari of variantes"><img
-                                        src="assets/images/product/{{ vari.image }}.png"
-                                        style="width: 100px; height: 100px;" alt="product image thumb"></div>
+
+                            <ul class="nav product-color-menu" role="tablist">
+
+                                <li style="cursor: pointer;" *ngFor="let vari of variantes" class="tab__item nav-item"
+                                    (click)="changeColor(vari.couleur)">
+                                    <span class="dot-{{vari.couleur}}"></span>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="widget_text_p" *ngIf="zoneText">
+
+                        <div class="dialog">
+                            <a (click)="close_text_p()" class="close-classic"></a>
+                        </div>
+
+                        <textarea class="form-control" [(ngModel)]="t_perso" cols="50" wrap="physical" maxlength="30"
+                            rows="2">{{ t_perso }}</textarea>
+
+                        <hr>
+
+                        <div class="mise_forme">
+                            <div class="variable-color-selector  variations">
+
+                                <a *ngIf="!t_c_weight" style="cursor: pointer;" class="button_style"
+                                    (click)="change_t_w(true)"> <i class="fas fa-bold"></i> </a>
+
+                                <a *ngIf="t_c_weight" style="cursor: pointer;" class="button_style_click"
+                                    (click)="change_t_w(false)"> <i class="fas fa-bold"></i> </a>
+
+
+                                <a *ngIf="!t_c_style" style="cursor: pointer;" class="button_style italic"
+                                    (click)="change_t_s(true)"> <i class="fas fa-italic"></i> </a>
+                                <a *ngIf="t_c_style" style="cursor: pointer;" class="button_style_click italic"
+                                    (click)="change_t_s(false)"> <i class="fas fa-italic"></i></a>
+
+
+                                <a *ngIf="!t_c_deco" style="cursor: pointer;" class="button_style deco"
+                                    (click)="change_t_d(true)"> <i class="fas fa-underline"></i> </a>
+                                <a *ngIf="t_c_deco" style="cursor: pointer;" class="button_style_click deco"
+                                    (click)="change_t_d(false)"> <i class="fas fa-underline"></i> </a>
+
 
                             </div>
                         </div>
-                        <!--// Product Details Left -->
+
+                        <hr>
+                        <div class="variable-color-selector mt-20 variations">
+                            <select [(ngModel)]="t_color">
+                                <option value="black" class="attached enabled">Noire</option>
+                                <option value="white" class="attached enabled">Blanche</option>
+                                <option value="red" class="attached enabled">Rouge</option>
+                                <option value="blue" class="attached enabled">Bleu</option>
+
+                                <option value="yellow" class="attached enabled">Jaune</option>
+                                <option value="orange" class="attached enabled">Orange</option>
+                                <option value="violet" class="attached enabled">Violet</option>
+                                <option value="BlueViolet" class="attached enabled">Bleu Violet</option>
+                                <option value="Chocolate" class="attached enabled">Chocolat</option>
+                                <option value="DarkMagenta" class="attached enabled">DarkMagenta</option>
+                                <option value="gold" class="attached enabled">Gold</option>
+                                <option value="indigo" class="attached enabled">Indigo</option>
+                                <option value="olive" class="attached enabled">Olive</option>
+                                <option value="Pink" class="attached enabled">Pink</option>
+                                <option value="Teal" class="attached enabled">Teal</option>
+
+                            </select>
+                        </div>
+
+                        <hr>
+
+                        <div class="variable-color-font">
+                            <p [ngStyle]="{'font-family': (t_family) ? t_family : 'Arial' }" (click)="modal_change_family()" >
+                                {{ t_family }} <i class="fas fa-mouse-pointer"></i>
+                            </p>
+                        </div>
+                    
+
+                        <hr>
+
+                        <div class="quickview-quality">
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col-6  taille_de_la_police">
+                                        Taille de la Police
+                                    </div>
+                                    <div class="col-6 cart-plus-minus">
+                                        <div class="dec qtybutton" (click)="dec_size_text(size_t)">-</div>
+                                        <input (ngModelChange)="change_size_text($event)" [(ngModel)]="size_t"
+                                            class="cart-plus-minus-box" type="text" name="qtybutton" [value]="size_t">
+                                        <div class="inc qtybutton" (click)="inc_size_text(size_t)">+</div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
-                    <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
-                        <div class="product-details-content ">
 
-                            <h5 class="font-weight--reguler mb-10">{{name}}</h5>
+                    <div class="widget_change_family" *ngIf="m_change_family">
 
-                            <h3 class="price">${{price}}</h3>
+                        <div class="dialog">
+                            <a (click)="c_modal_change_family()" class="close-classic"></a>
+                        </div>
 
+                        <p *ngFor="let f of family" [ngStyle]="{'font-family': (f) ? f : 'Arial' }" (click)="change_family(f)">
+                            {{ f }} <i *ngIf="f===t_family" class="fas fa-check"></i>
+                        </p>
 
-                            <div class="product-size-wrapper mt-20" *ngIf="is_size">
-                                <div class="tab-content d-flex">
-                                    <label class="mr-2">Size</label>
-                                    <div class="tab-pane fade show active" id="tab_list_l">
-                                        {{size}}
-                                    </div>
-                                    <div class="tab-pane fade" id="tab_list_m">
-                                        M
-                                    </div>
-                                    <div class="tab-pane fade" id="tab_list_s">
-                                        S
-                                    </div>
-                                </div>
-
-                                <ul class="nav product-size-menu" role="tablist" *ngIf="is_size">
-                                    <li class="tab__item nav-item active">
-                                        <a class="nav-link active" data-toggle="tab" role="tab"
-                                            (click)="changeSize('S')">S</a>
-                                    </li>
-                                    <li class="tab__item nav-item">
-                                        <a class="nav-link" data-toggle="tab" role="tab" (click)="changeSize('M')">M</a>
-                                    </li>
-                                    <li class="tab__item nav-item">
-                                        <a class="nav-link " data-toggle="tab" role="tab"
-                                            (click)="changeSize('L')">L</a>
-                                    </li>
-                                    <li class="tab__item nav-item ">
-                                        <a class="nav-link " data-toggle="tab" role="tab"
-                                            (click)="changeSize('XL')">XL</a>
-                                    </li>
-                                    <li class="tab__item nav-item">
-                                        <a class="nav-link " data-toggle="tab" role="tab"
-                                            (click)="changeSize('2XL')">2XL</a>
-                                    </li>
-                                </ul>
-                            </div>
+                    </div>
 
 
-                            <div class="product-color-wrapper mt-20">
-                                <div class="tab-content d-flex">
-                                    <label class="mr-2">Color </label>
-                                    <div class="tab-pane fade active" id="tab_list_white">
-                                        {{color}}
-                                    </div>
+                    <div class="widget_import_i" *ngIf="modal_import">
 
-                                </div>
-
-                                <ul class="nav product-color-menu" role="tablist">
-
-                                    <li *ngFor="let vari of variantes" class="tab__item nav-item"
-                                        (click)="changeColor(vari.couleur)">
-                                        <span class="dot-{{vari.couleur}}"></span>
-                                    </li>
+                        <div class="dialog">
+                            <a (click)="close_modal_i()" class="close-classic"></a>
+                        </div>
 
 
-                                </ul>
+                        <form [formGroup]="uploadForm" (ngSubmit)="upload()">
 
-                            </div>
-                            <div *ngIf="!is_p" class="place-order mt-30">
-                                <a (click)="perso_is_open(true)" class="btn--full btn--black btn--lg text-center">Personnaliser Votre {{ name }}</a>
-                            </div>
-
-                            <div *ngIf="is_p">
-
-                                <div class="quickview-action-wrap mt-30">
-                                    <label>Texte</label>
-                                    <input type="text" class="form-control" maxlength="30" [(ngModel)]="t_perso">
-                                </div>
-
-                                <div class="variable-color-selector mt-20 variations">
-                                    <label>Couleur</label>
-                                    <select [(ngModel)]="t_color">
-                                        <option value="black" class="attached enabled">Noire</option>
-                                        <option value="white" class="attached enabled">Blanche</option>
-                                        <option value="red" class="attached enabled">Rouge</option>
-                                        <option value="blue" class="attached enabled">Bleu</option>
-                                    </select>
-                                </div>
-
-                                <div class="variable-color-selector mt-20 variations">
-                                    <label>Forme</label><br>
-                                    <a *ngIf="!t_c_weight" style="cursor: pointer;" class="button_style" (click)="change_t_w(true)"> G </a>
-
-                                    <a *ngIf="t_c_weight" style="cursor: pointer;" class="button_style_click" (click)="change_t_w(false)"> G </a>
-
-                                    <!-- <a *ngIf="!t_c_weight" style="cursor: pointer;" (click)="change_t_w(true)"> <img
-                                            src="assets/images/icons/bold.svg" width="15"> </a>
-                                    <a *ngIf="t_c_weight" style="cursor: pointer;" (click)="change_t_w(false)"> <img
-                                            src="assets/images/icons/bold-click.svg" width="15"> </a> -->
-
-                                    <a *ngIf="!t_c_style" style="cursor: pointer;" class="button_style italic" (click)="change_t_s(true)"> I </a>
-                                    <a *ngIf="t_c_style" style="cursor: pointer;" class="button_style_click italic" (click)="change_t_s(false)"> I</a>
+                            <div class="file-upload">
+                                <button class="file-upload-btn" type="button"
+                                    onclick="$('.file-upload-input').trigger( 'click' )"><i class="fas fa-upload"></i>
+                                    &nbsp; Importer l'image</button>
+                                <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                    accept="image/*" />
 
 
-                                    <a *ngIf="!t_c_deco" style="cursor: pointer;" class="button_style deco" (click)="change_t_d(true)"> S </a>
-                                    <a *ngIf="t_c_deco" style="cursor: pointer;" class="button_style_click deco" (click)="change_t_d(false)"> S</a>
-
-                                </div>
-
-                                <div class="variable-color-selector mt-20 variations">
-                                    <label>Police</label>
-                                    <select [(ngModel)]="t_family">
-                                        <option value="Times New Roman" class="attached enabled">Times New Roman</option>
-                                        <option value="Impact" class="attached enabled">Impact</option>
-                                        <option value="Verdana" class="attached enabled">Verdana</option>
-                                        <option value="Trebuchet" class="attached enabled">Trebuchet</option>
-                                        <option value="Gill Sans" class="attached enabled">Gill Sans</option>
-                                        <option value="Courier New" class="attached enabled">Courier New</option>
-
-                                        <option value="Lucida Sans" class="attached enabled">Lucida Sans</option>
-                                        <option value="Cambria" class="attached enabled">Cambria</option>
-                                        <option value="Cochin" class="attached enabled">Cochin</option>
-                                        <option value="Georgia" class="attached enabled">Georgia</option>
 
                                 
-                                    </select>
-                                </div>
-
-                                <div class="place-order mt-30" >
-                                    <a (click)="perso_is_open(false)" class="btn--full btn--black btn--lg text-center">Fermer l'outil</a>
-                                </div>
-
-                            </div>
-
-
-                            <div class="quickview-action-wrap mt-30">
-                                <div class="quickview-cart-box">
+                                <div class="file-upload-content">
                                     <div class="quickview-quality">
-                                        <div class="cart-plus-minus">
-                                            <input [(ngModel)]="qty" class="cart-plus-minus-box" type="text" name="qtybutton" >
+                                        <div class="container">
+            
+                                            <div class="row">
+                                                <div class="col-6  taille_de_la_police">
+                                                    Taille de la L'image
+                                                </div>
+                                                <div class="col-6 cart-plus-minus">
+                                                    <div class="dec qtybutton" (click)="dec_size_image(size_i)">-</div>
+                                                    <input (ngModelChange)="change_size_image($event)" [(ngModel)]="size_i"
+                                                        class="cart-plus-minus-box" type="text" name="qtybutton" [value]="size_i">
+                                                    <div class="inc qtybutton" (click)="inc_size_image(size_i)">+</div>
+            
+                                                </div>
+            
+                                            </div>
+            
                                         </div>
+            
                                     </div>
-
-                                    <div class="quickview-button">
-                                        <div class="quickview-cart button">
-                                            <a (click)="addCart(produit)" class="btn--lg btn--black font-weight--reguler text-white">Add to
-                                                cart</a>
-                                        </div>
-
+                                    <br>
+                                    <div class="image-title-wrap row">
+                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                                class="image-title col-12 ">Uploaded Image</span></button>
                                     </div>
                                 </div>
                             </div>
+                        </form>
 
-                            <br><br>
+                        <p>
+                            En téléchargeant une image, vous garantissez que votre utilisation de l'image n'enfreint
+                            aucun droit ou loi. Vous pouvez consulter les motifs de rejet des designs de Spreadshirt
+                            ici.
+                        </p>
 
-                            
-
-                            
-
-
-
-                        </div>
                     </div>
+
+
                 </div>
 
 
 
-
-
-
             </div>
-        </div>
 
+
+
+
+        </div>
+        <br>
+        <br>
+        <br>
     </div>
+
+
+
+
 
 
     <!-- Product Area End -->

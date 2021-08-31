@@ -17,20 +17,18 @@ export class MiniCartComponent implements OnInit {
 
     this.storeCart();
     this.calculatebill()
+    console.log('yo-mini-cart');
 
 
   }
 
   storeCart(){
-    console.log('yo');
 
     let cartLocal = localStorage.getItem('cart');
     if (cartLocal) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
-      console.log(this.cart);
     } else {
       this.cart = [];
-      console.log(this.cart);
 
     }
   }
@@ -38,6 +36,10 @@ export class MiniCartComponent implements OnInit {
   remove(i) {
     this.cart.splice(i, 1);
     localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.storeCart();
+    this.calculatebill()
+
+
   }
 
   calculatebill() {

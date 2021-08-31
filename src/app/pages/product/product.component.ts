@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ProduitService } from 'src/app/services/produits.service';
+import * as $ from 'jquery';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-product',
@@ -21,6 +25,11 @@ export class ProductComponent implements OnInit {
   color: String;
   is_size: Boolean;
 
+  src_i_p: String;
+
+  w_p_info: Boolean = true;
+  zoneText: Boolean = false;
+
   t_perso: string = 'Bonjour';
 
   t_color: String = 'black';
@@ -35,9 +44,22 @@ export class ProductComponent implements OnInit {
   t_c_deco: Boolean = false;
 
 
-  t_family : String  = 'Impact';
+  t_family: String = 'Verdana';
 
   is_p: Boolean = false;
+
+
+  @Input() size_t: number = 10;
+  @Input() size_i: number = 80;
+
+
+  active_t_p: Boolean = false;
+  active_i_p: Boolean = true;
+
+  modal_import: Boolean = false;
+  m_change_family: Boolean = false;
+
+  family = ['Times New Roman', 'Impact','Verdana','Trebuchet','Gill Sans','Courier New','Lucida Sans','Cambria','Cochin','Georgia']
 
 
   cookiCart: any[];
@@ -47,24 +69,34 @@ export class ProductComponent implements OnInit {
 
   cart: Array<string> = [];
 
-  qty: number;
+  @Input() qty: number = 1;
+
+
+  imgFile: string;
+
+  uploadForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    file: new FormControl('', [Validators.required]),
+    imgSrc: new FormControl('', [Validators.required])
+  });
 
   constructor(private produitService: ProduitService,
     private route: ActivatedRoute,
-    private title: Title) { }
+    private title: Title,
+    private httpClient: HttpClient) { }
 
   ngOnInit() {
 
     this.storeCart();
 
-
-    this.size = "S"
-    this.color = "white"
-
+    this.size = "S";
+    this.color = "white";
 
     const id = this.route.snapshot.params['id'];
 
     this.name = this.produitService.getProduitById(+id).name;
+    this.src_i_p = this.produitService.getProduitById(+id).src_index;
+
     this.price = this.produitService.getProduitById(+id).price;
     this.short_name = this.produitService.getProduitById(+id).short_name;
     this.variantes = this.produitService.getProduitById(+id).variantes;
@@ -77,20 +109,12 @@ export class ProductComponent implements OnInit {
     this.title.setTitle("TOONEUF - Produits -" + this.name);
 
 
-    this.loadScript('../assets/js/vendor/modernizr-2.8.3.min.js');
-    this.loadScript('../assets/js/vendor/jquery-3.5.1.min.js');
-    this.loadScript('../assets/js/vendor/jquery-migrate-3.3.0.min.js');
-    this.loadScript('../assets/js/vendor/bootstrap.min.js');
-    this.loadScript('../assets/js/plugins/fullpage.min.js');
-    this.loadScript('../assets/js/plugins/slick.min.js');
-    this.loadScript('../assets/js/plugins/countdown.min.js');
-    this.loadScript('../assets/js/plugins/magnific-popup.js');
-    this.loadScript('../assets/js/plugins/easyzoom.js');
-    this.loadScript('../assets/js/plugins/images-loaded.min.js');
-    this.loadScript('../assets/js/plugins/isotope.min.js');
-    this.loadScript('../assets/js/plugins/YTplayer.js');
-    this.loadScript('../assets/js/plugins/wow.min.js');
-    this.loadScript('../assets/js/main.js');
+
+
+    this.loadScript('../assets/js/move.js');
+    this.loadScript('../assets/js/b_upload.js');
+
+
   }
 
 
@@ -104,6 +128,53 @@ export class ProductComponent implements OnInit {
     body.appendChild(script);
   }
 
+
+  inc_qty(qte) {
+
+    let q = parseFloat(qte);
+    // console.log(this.qty); 
+
+    if (this.qty > 0) {
+      this.qty = q + 1;
+      console.log(this.qty);
+      this.produit[0]['qty'] = this.qty;
+
+    }
+    else {
+      this.qty = 1;
+      this.produit[0]['qty'] = this.qty;
+
+    }
+
+  }
+
+
+  dec_qty(qte) {
+
+    let q = parseFloat(qte);
+
+    if (this.qty == 1) {
+
+      this.qty = 1;
+      this.produit[0]['qty'] = this.qty;
+
+
+    }
+    else {
+      this.qty = q - 1;
+      this.produit[0]['qty'] = this.qty;
+
+      console.log(this.qty);
+    }
+  }
+
+  change_qty(qte) {
+
+    this.qty = parseFloat(qte);
+    console.log(this.qty);
+
+  }
+
   changeSize(size: String) {
 
     this.size = size;
@@ -113,6 +184,8 @@ export class ProductComponent implements OnInit {
 
   changeColor(color: String) {
     this.color = color;
+    this.src_i_p = "tshirt-" + color;
+    console.log(this.src_i_p);
     this.update_produit();
 
   }
@@ -161,16 +234,13 @@ export class ProductComponent implements OnInit {
 
   }
 
-  storeCart(){
-    console.log('yo');
+  storeCart() {
 
     let cartLocal = localStorage.getItem('cart');
     if (cartLocal) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
-      console.log(this.cart);
     } else {
       this.cart = [];
-      console.log(this.cart);
 
     }
   }
@@ -179,6 +249,7 @@ export class ProductComponent implements OnInit {
 
     this.storeCart();
 
+    console.log(produit);
     //console.log(this.qty);
 
 
@@ -187,9 +258,8 @@ export class ProductComponent implements OnInit {
     let eCart;
 
     if (this.cart.length <= 0) {
-      produit[0]['qty'] = 1;
+      //produit[0]['qty'] = 1;
       this.cart.push(produit);
-      console.log(this.cart);
       localStorage.setItem('cart', JSON.stringify(this.cart));
 
     } else {
@@ -200,7 +270,7 @@ export class ProductComponent implements OnInit {
             iCart = i + 1;
             index = i;
           }
-          else{
+          else {
             eCart = 0;
 
           }
@@ -223,16 +293,13 @@ export class ProductComponent implements OnInit {
         console.log("ic");
         this.cart[index][0]['qty'] = this.cart[index][0]['qty'] + 1;
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        console.log(this.cart);
-
 
       }
       if (eCart == 0) {
-        produit[0]['qty'] = 1;
+        //produit[0]['qty'] = this.qty;
         this.cart.push(produit);
         console.log("eC");
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        console.log(this.cart);
 
       }
 
@@ -255,6 +322,7 @@ export class ProductComponent implements OnInit {
           name: this.name,
           short_name: this.short_name,
           price: this.price,
+          qty: this.qty,
           size: this.size,
           color: this.color,
           t_perso: this.t_perso,
@@ -273,9 +341,10 @@ export class ProductComponent implements OnInit {
           name: this.name,
           short_name: this.short_name,
           price: this.price,
+          qty: this.qty,
           size: 'NaN',
           color: this.color,
-          var_image : this.short_name+'-'+this.color,
+          var_image: this.short_name + '-' + this.color,
           t_perso: this.t_perso,
           t_weight: this.t_weight,
           t_style: this.t_style,
@@ -289,4 +358,224 @@ export class ProductComponent implements OnInit {
 
   }
 
+  add_zone_text() {
+
+    this.zoneText = true;
+    this.w_p_info = false;
+    this.active_t_p = true;
+    this.modal_import = false;
+    this.m_change_family = false;
+
+
+  }
+
+  write_t_p(ev) {
+
+    try {
+      this.t_perso = ev.target.value;
+      console.log(this.t_perso);
+
+    } catch (e) {
+      console.info('could not set textarea-value');
+    }
+  }
+
+
+  get uf() {
+    return this.uploadForm.controls;
+  }
+
+  onImageChange(e) {
+    const reader = new FileReader();
+
+    if (e.target.files && e.target.files.length) {
+      const [file] = e.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.imgFile = reader.result as string;
+        this.uploadForm.patchValue({
+          imgSrc: reader.result
+        });
+
+      };
+    }
+  }
+
+  upload() {
+    console.log(this.uploadForm.value);
+    this.httpClient.post('http://localhost:8888/file-upload.php', this.uploadForm.value)
+      .subscribe(response => {
+        alert('Image has been uploaded.');
+      })
+  }
+
+
+  inc_size_text(size) {
+
+    let s = parseFloat(size);
+    // console.log(this.qty); 
+
+    if (this.size_t > 0) {
+
+      if (this.size_t >= 32) {
+        this.size_t = s;
+        console.log(this.size);
+      }
+      else {
+        this.size_t = s + 1;
+        console.log(this.size);
+
+      }
+
+      //this.produit[0]['qty'] = this.qty;
+
+    }
+    else {
+      this.size_t = 1;
+      //this.produit[0]['qty'] = this.qty;
+
+    }
+
+  }
+
+
+  dec_size_text(size) {
+
+    let s = parseFloat(size);
+
+    if (this.size_t == 1) {
+
+      this.size_t = 1;
+      //this.produit[0]['qty'] = this.qty;
+
+
+    }
+    else {
+      this.size_t = s - 1;
+      //this.produit[0]['qty'] = this.qty;
+
+      console.log(this.qty);
+    }
+  }
+
+  change_size_text(size) {
+
+    this.size_t = parseFloat(size);
+    console.log(this.size_t);
+
+  }
+
+  close_text_p() {
+    this.zoneText = false;
+    this.w_p_info = true;
+    this.modal_import = false;
+    this.m_change_family = false;
+
+
+  }
+
+  modal_i() {
+    this.zoneText = false;
+    this.w_p_info = false;
+    this.modal_import = true;
+    this.active_i_p = true;
+    this.m_change_family = false;
+
+  }
+
+  close_modal_i() {
+    this.zoneText = false;
+    this.w_p_info = true;
+    this.modal_import = false;
+    this.m_change_family = false;
+
+  }
+
+
+
+  inc_size_image(size) {
+
+    let s = parseFloat(size);
+    // console.log(this.qty); 
+
+    if (this.size_i > 0) {
+
+
+      this.size_i = s + 1;
+
+      //this.produit[0]['qty'] = this.qty;
+
+    }
+    else {
+      this.size_i = 1;
+      //this.produit[0]['qty'] = this.qty;
+
+    }
+
+  }
+
+
+  dec_size_image(size) {
+
+    let s = parseFloat(size);
+
+    if (this.size_i == 1) {
+
+      this.size_i = 1;
+      //this.produit[0]['qty'] = this.qty;
+
+
+    }
+    else {
+      this.size_i = s - 1;
+      //this.produit[0]['qty'] = this.qty;
+
+      console.log(this.qty);
+    }
+  }
+
+  change_size_image(size) {
+
+    this.size_i = parseFloat(size);
+
+  }
+
+  getPosition(event) {
+    var p = $(".text_perso");
+    var offset = p.offset();
+    console.log("x: " + offset.left + ", y: " + offset.top);
+    //p.html("left: " + offset.left + ", top: " + offset.top);
+
+  }
+
+  modal_change_family(){
+    this.zoneText = false;
+    this.w_p_info = false;
+    this.modal_import = false
+    this.m_change_family = true;
+
+  }
+
+  c_modal_change_family(){
+    this.zoneText = true;
+    this.w_p_info = false;
+    this.modal_import = false
+    this.m_change_family = false;
+
+  }
+
+  change_family(f){
+    this.t_family = f;
+    this.m_change_family = false;
+    this.zoneText = true;
+    this.w_p_info = false;
+    this.modal_import = false
+    this.m_change_family = false;
+
+
+  }
+
+
 }
+

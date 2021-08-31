@@ -1,0 +1,144 @@
+.single-hero-slider-7 .one h4 {
+    color: white;
+    font-weight: 800;
+}
+
+.single-hero-slider-7 h4 {
+    font-weight: 800;
+}
+
+.single-hero-slider-one {
+    background: rgb(8, 143, 204);
+}
+
+.hero-text h1 {
+    color: white;
+}
+
+.hero-content-wrap {
+    text-align: center;
+}
+
+.hero-div-custom {
+    padding: 10px;
+}
+
+.hero-div-custom-tshirt {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-text-7 .hero-div-custom-tshirt h2 {
+    color: #000;
+}
+
+.hero-div-custom-bodysuit {
+    background-color: rgba(8, 143, 204, 0.7);
+}
+
+.hero-div-custom h2 {
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+.section-btn-design {
+    margin: 40px;
+    text-align: center;
+}
+
+.section-btn-design button {
+    background-color: rgb(8, 143, 204);
+    color: white;
+    text-transform: uppercase;
+}
+
+.offer-colection-area .bg {
+    background-color: #f2f2f2;
+    padding-bottom: 30px;
+}
+
+.offer-colection-area .single-support-item h1,
+.offer-colection-area .single-support-item h6 {
+    color: rgb(8, 143, 204);
+}
+
+
+
+.trust-section .trust-section-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.trust-section .trust-section-item h3 {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.trust-section .trust-section-item p {
+    font-weight: 300;
+    color: #adadad;
+}
+
+.trust-section .icon {
+    margin-bottom: 5px;
+}
+
+.trust-section .icon img {
+    width: 50px;
+}
+
+.trust-section .ssl-paypal {
+    width: 200px;
+    margin-top: -10px;
+}
+
+.about {
+    margin-bottom: 25px;
+}
+
+.about .about-img img {
+    width: 80%;
+}
+
+.section-header {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 45px;
+}
+
+.section-header p {
+    display: inline-block;
+    margin: 0 30px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    background: #ffffff;
+}
+
+.section-header p::after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    top: 11px;
+    right: -30px;
+    left: -30px;
+    background: rgb(8, 143, 204);
+    z-index: -1;
+}
+
+.section-header h2 {
+    margin: 0;
+    position: relative;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+    .section-header h2 {
+        font-size: 30px;
+    }
+}

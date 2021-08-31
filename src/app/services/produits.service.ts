@@ -65,14 +65,24 @@ export class ProduitService {
             couleur: 'black',
             image: 'cup-black',
             price: '12',
+          },{
+            couleur: 'white',
+            image: 'cup-white',
+            price: '12',
+          },
+          {
+            couleur: 'black',
+            image: 'cup-black',
+            price: '12',
           }
         ]
       
       },
       {
         id: 2,
-        name: 'T-shirt',
+        name: 'T-shirt Homme & Femme',
         short_name: 'tshirt',
+        src_index : 'tshirt-white',
         price: "25.00",
         min_price: "25.00",
         max_price: "35.00",
@@ -93,13 +103,23 @@ export class ProduitService {
             price: '12',
           },
           {
-            couleur: 'blue',
-            image: 'tshirt-blue',
+            couleur: 'turquoise',
+            image: 'tshirt-turquoise',
             price: '12',
           },
           {
             couleur: 'red',
             image: 'tshirt-red',
+            price: '12',
+          },
+          {
+            couleur: 'fuchsia',
+            image: 'tshirt-fuchsia',
+            price: '12',
+          },
+          {
+            couleur: 'navy',
+            image: 'tshirt-navy',
             price: '12',
           }
         ]

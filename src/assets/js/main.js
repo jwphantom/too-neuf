@@ -93,6 +93,23 @@
 		dom.find('.global-overlay').removeClass('overlay-open');
 	});
 
+
+
+    $("#lolcat").mousedown(function () {
+        $(this).data("dragging", true);
+      });
+  
+      $("#lolcat").mouseup(function () {
+        $(this).data("dragging", false);
+      });
+  
+      $("#lolcat").mousemove(function (e) {
+        if (!$(this).data("dragging"))
+          return;
+        $(this).css("left", e.clientX - $(this).width() / 2);
+        $(this).css("top", e.clientY - $(this).height() / 2);
+      });
+
 	/*----------------------------------------*/
 	/*  Offcanvas
     /*----------------------------------------*/
@@ -482,7 +499,7 @@
         var $details = $this.siblings('.product-details-images-2');
         $this.slick({
             arrows: true,
-            slidesToShow: 4,
+            slidesToShow: 2,
             slidesToScroll: 1,
             autoplay: false,
             autoplaySpeed: 5000,
@@ -626,12 +643,12 @@
     
    // Magnific Popup Image
 
-    $('.poppu-img').magnificPopup({
-        type: 'image',
-        gallery:{
-            enabled:true
-        }
-    });
+    // $('.poppu-img').magnificPopup({
+    //     type: 'image',
+    //     gallery:{
+    //         enabled:true
+    //     }
+    // });
 
     /*--
         Shop filter active 
@@ -704,24 +721,24 @@
     /*----------------------------
     	Cart Plus Minus Button
     ------------------------------ */
-    var CartPlusMinus = $('.cart-plus-minus');
-    CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
-    CartPlusMinus.append('<div class="inc qtybutton">+</div>');
-    $(".qtybutton").on("click", function() {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() === "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-    });
+    // var CartPlusMinus = $('.cart-plus-minus');
+    // CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
+    // CartPlusMinus.append('<div class="inc qtybutton">+</div>');
+    // $(".qtybutton").on("click", function() {
+    //     var $button = $(this);
+    //     var oldValue = $button.parent().find("input").val();
+    //     if ($button.text() === "+") {
+    //         var newVal = parseFloat(oldValue) + 1;
+    //     } else {
+    //         // Don't allow decrementing below zero
+    //         if (oldValue > 0) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //         } else {
+    //             newVal = 1;
+    //         }
+    //     }
+    //     $button.parent().find("input").val(newVal);
+    // });
   
     /*======================================
     =       Countdown Activation          =     

@@ -14,8 +14,13 @@ import { Header2Component } from './static/header2/header2.component';
 import { Footer2Component } from './static/footer2/footer2.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ProduitService } from './services/produits.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './pages/cart/cart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http'; 
+
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +40,12 @@ import { CartComponent } from './pages/cart/cart.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    ReactiveFormsModule,
+    HttpClientModule
+
 
   ],
   providers: [
