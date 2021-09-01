@@ -8,8 +8,8 @@
             <div class="row justify-content-center ">
 
                 <div class="col-md-1 col-xs-8">
-                    <div class="tools" >
-                        <div class="s_tools" >
+                    <div class="tools">
+                        <div class="s_tools">
                             <img src="assets/images/product/tools/tshirt.png">
                             <p>Produits</p>
                         </div>
@@ -40,12 +40,14 @@
                             {{t_perso}}
                         </p> -->
 
-                        <p (click)="getPosition($event)"  *ngIf="active_t_p" class="text_perso" cdkDragBoundary=".text_border" cdkDrag
-                            [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'yellow') ? 'yellow' : (t_color === 'orange') ? 'orange' :(t_color === 'violet') ? 'violet' :(t_color === 'BlueViolet') ? 'BlueViolet' :(t_color === 'Chocolate') ? 'Chocolate' :(t_color === 'DarkMagenta') ? 'DarkMagenta' :(t_color === 'gold') ? 'gold' :(t_color === 'indigo') ? 'indigo' :(t_color === 'olive') ? 'olive' :(t_color === 'Pink') ? 'Pink' :(t_color === 'red') ? 'red' : (t_color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-size': (size_t) ? size_t+'px' : 'normal' ,'text-decoration': (t_deco === true) ? 'underline' : 'none',
-                            'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
+                        <div *ngIf="active_t_p" >
+                            <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso {{i}}" cdkDragBoundary=".text_border" cdkDrag
+                                [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
+                            'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
 
-                            {{t_perso}}
-                        </p>
+                                {{t_perso[i][0].word}}
+                            </p>
+                        </div>
 
 
                         <div class="file-upload-content">
@@ -146,31 +148,31 @@
                             <a (click)="close_text_p()" class="close-classic"></a>
                         </div>
 
-                        <textarea class="form-control" [(ngModel)]="t_perso" cols="50" wrap="physical" maxlength="30"
-                            rows="2">{{ t_perso }}</textarea>
+                        <textarea class="form-control" [(ngModel)]="t_perso[id_t_perso][0].word" cols="50" wrap="physical" maxlength="30"
+                            rows="2">{{t_perso[id_t_perso][0].word}}</textarea>
 
                         <hr>
 
                         <div class="mise_forme">
                             <div class="variable-color-selector  variations">
 
-                                <a *ngIf="!t_c_weight" style="cursor: pointer;" class="button_style"
-                                    (click)="change_t_w(true)"> <i class="fas fa-bold"></i> </a>
+                                <a *ngIf="!t_perso[id_t_perso][0].bold" style="cursor: pointer;" class="button_style"
+                                    (click)="change_t_w(true,id_t_perso)"> <i class="fas fa-bold"></i> </a>
 
-                                <a *ngIf="t_c_weight" style="cursor: pointer;" class="button_style_click"
-                                    (click)="change_t_w(false)"> <i class="fas fa-bold"></i> </a>
-
-
-                                <a *ngIf="!t_c_style" style="cursor: pointer;" class="button_style italic"
-                                    (click)="change_t_s(true)"> <i class="fas fa-italic"></i> </a>
-                                <a *ngIf="t_c_style" style="cursor: pointer;" class="button_style_click italic"
-                                    (click)="change_t_s(false)"> <i class="fas fa-italic"></i></a>
+                                <a *ngIf="t_perso[id_t_perso][0].bold" style="cursor: pointer;" class="button_style_click"
+                                    (click)="change_t_w(false,id_t_perso)"> <i class="fas fa-bold"></i> </a>
 
 
-                                <a *ngIf="!t_c_deco" style="cursor: pointer;" class="button_style deco"
-                                    (click)="change_t_d(true)"> <i class="fas fa-underline"></i> </a>
-                                <a *ngIf="t_c_deco" style="cursor: pointer;" class="button_style_click deco"
-                                    (click)="change_t_d(false)"> <i class="fas fa-underline"></i> </a>
+                                <a *ngIf="!t_perso[id_t_perso][0].italic" style="cursor: pointer;" class="button_style italic"
+                                    (click)="change_t_s(true,id_t_perso)"> <i class="fas fa-italic"></i> </a>
+                                <a *ngIf="t_perso[id_t_perso][0].italic" style="cursor: pointer;" class="button_style_click italic"
+                                    (click)="change_t_s(false,id_t_perso)"> <i class="fas fa-italic"></i></a>
+
+
+                                <a *ngIf="!t_perso[id_t_perso][0].underline" style="cursor: pointer;" class="button_style deco"
+                                    (click)="change_t_d(true,id_t_perso)"> <i class="fas fa-underline"></i> </a>
+                                <a *ngIf="t_perso[id_t_perso][0].underline" style="cursor: pointer;" class="button_style_click deco"
+                                    (click)="change_t_d(false,id_t_perso)"> <i class="fas fa-underline"></i> </a>
 
 
                             </div>
@@ -178,7 +180,7 @@
 
                         <hr>
                         <div class="variable-color-selector mt-20 variations">
-                            <select [(ngModel)]="t_color">
+                            <select [(ngModel)]="t_perso[id_t_perso][0].color">
                                 <option value="black" class="attached enabled">Noire</option>
                                 <option value="white" class="attached enabled">Blanche</option>
                                 <option value="red" class="attached enabled">Rouge</option>
@@ -202,11 +204,12 @@
                         <hr>
 
                         <div class="variable-color-font">
-                            <p [ngStyle]="{'font-family': (t_family) ? t_family : 'Arial' }" (click)="modal_change_family()" >
-                                {{ t_family }} <i class="fas fa-mouse-pointer"></i>
+                            <p [ngStyle]="{'font-family': (t_perso[id_t_perso][0].family) ? t_perso[id_t_perso][0].family : 'Arial' }"
+                                (click)="modal_change_family()">
+                                {{ t_perso[id_t_perso][0].family }} <i class="fas fa-mouse-pointer"></i>
                             </p>
                         </div>
-                    
+
 
                         <hr>
 
@@ -218,10 +221,10 @@
                                         Taille de la Police
                                     </div>
                                     <div class="col-6 cart-plus-minus">
-                                        <div class="dec qtybutton" (click)="dec_size_text(size_t)">-</div>
-                                        <input (ngModelChange)="change_size_text($event)" [(ngModel)]="size_t"
-                                            class="cart-plus-minus-box" type="text" name="qtybutton" [value]="size_t">
-                                        <div class="inc qtybutton" (click)="inc_size_text(size_t)">+</div>
+                                        <div class="dec qtybutton" (click)="dec_size_text(t_perso[id_t_perso][0].size)">-</div>
+                                        <input (ngModelChange)="change_size_text($event)" [(ngModel)]="t_perso[id_t_perso][0].size"
+                                            class="cart-plus-minus-box" type="text" name="qtybutton" [value]="t_perso[id_t_perso][0].size">
+                                        <div class="inc qtybutton" (click)="inc_size_text(t_perso[id_t_perso][0].size)">+</div>
 
                                     </div>
 
@@ -239,8 +242,9 @@
                             <a (click)="c_modal_change_family()" class="close-classic"></a>
                         </div>
 
-                        <p *ngFor="let f of family" [ngStyle]="{'font-family': (f) ? f : 'Arial' }" (click)="change_family(f)">
-                            {{ f }} <i *ngIf="f===t_family" class="fas fa-check"></i>
+                        <p *ngFor="let f of family" [ngStyle]="{'font-family': (f) ? f : 'Arial' }"
+                            (click)="change_family(f)">
+                            {{ f }} <i *ngIf="f===t_perso[id_t_perso][0].family" class="fas fa-check"></i>
                         </p>
 
                     </div>
@@ -264,27 +268,28 @@
 
 
 
-                                
+
                                 <div class="file-upload-content">
                                     <div class="quickview-quality">
                                         <div class="container">
-            
+
                                             <div class="row">
                                                 <div class="col-6  taille_de_la_police">
                                                     Taille de la L'image
                                                 </div>
                                                 <div class="col-6 cart-plus-minus">
                                                     <div class="dec qtybutton" (click)="dec_size_image(size_i)">-</div>
-                                                    <input (ngModelChange)="change_size_image($event)" [(ngModel)]="size_i"
-                                                        class="cart-plus-minus-box" type="text" name="qtybutton" [value]="size_i">
+                                                    <input (ngModelChange)="change_size_image($event)"
+                                                        [(ngModel)]="size_i" class="cart-plus-minus-box" type="text"
+                                                        name="qtybutton" [value]="size_i">
                                                     <div class="inc qtybutton" (click)="inc_size_image(size_i)">+</div>
-            
+
                                                 </div>
-            
+
                                             </div>
-            
+
                                         </div>
-            
+
                                     </div>
                                     <br>
                                     <div class="image-title-wrap row">

@@ -30,11 +30,12 @@ export class ProductComponent implements OnInit {
   w_p_info: Boolean = true;
   zoneText: Boolean = false;
 
-  t_perso: string = 'Bonjour';
+  t_perso: any[] = [];
+  id_t_perso : number;
 
   t_color: String = 'black';
 
-  t_weight: Boolean = false;
+  t_weight: any[] = [];
   t_c_weight: Boolean = false;
 
   t_style: Boolean = false;
@@ -42,7 +43,6 @@ export class ProductComponent implements OnInit {
 
   t_deco: Boolean = false;
   t_c_deco: Boolean = false;
-
 
   t_family: String = 'Verdana';
 
@@ -196,30 +196,31 @@ export class ProductComponent implements OnInit {
     //getted from binding
   }
 
-  change_t_w(param: Boolean) {
+  change_t_w(param: Boolean,i) {
 
-    this.t_weight = param;
+    this.t_perso[i][0].bold = param;
     this.t_c_weight = !this.t_c_weight;
     this.update_produit();
 
 
   }
 
-  change_t_s(param: Boolean) {
+  change_t_s(param: Boolean,i) {
 
-    this.t_style = param;
+    this.t_perso[i][0].italic = param;
     this.t_c_style = !this.t_c_style;
     this.update_produit();
 
   }
 
-  change_t_d(param: Boolean) {
+  change_t_d(param: Boolean,i) {
 
-    this.t_deco = param;
+    this.t_perso[i][0].underline = param;
     this.t_c_deco = !this.t_c_deco;
     this.update_produit();
 
   }
+
 
   change_t_f(font: String) {
 
@@ -366,7 +367,65 @@ export class ProductComponent implements OnInit {
     this.modal_import = false;
     this.m_change_family = false;
 
+    let l = this.t_perso.length;
 
+    if(l == 0){
+      this.id_t_perso = 0;
+      this.t_perso[0] = [
+        {
+          variantes: [
+            {
+              x: 0,
+              y: 0,
+            }
+          ],
+          bold : false,
+          italic : false,
+          underline : false,
+          color : 'black',
+          size : 10,
+          family : 'Times New Roman',
+          word : 'Votre Texte'+(l+1)
+        }
+      ]
+    }else{
+      console.log(l);
+
+      this.id_t_perso = l;
+      let param = [
+        {
+          variantes: [
+            {
+              x: 0,
+              y: 0,
+            }
+          ],
+          bold : false,
+          italic : false,
+          underline : false,
+          color : 'black',
+          family : 'Times New Roman',
+          size : 10,
+          word : 'Votre Texte'+(l+1)
+        }
+      ];
+
+      this.t_perso.push(param);
+
+
+    }
+
+    console.log(this.t_perso);
+
+  }
+
+  edit_text(i){
+    this.zoneText = true;
+    this.w_p_info = false;
+    this.active_t_p = true;
+    this.modal_import = false;
+    this.m_change_family = false;
+    this.id_t_perso = i;
   }
 
   write_t_p(ev) {
@@ -416,14 +475,14 @@ export class ProductComponent implements OnInit {
     let s = parseFloat(size);
     // console.log(this.qty); 
 
-    if (this.size_t > 0) {
+    if (this.t_perso[this.id_t_perso][0].size > 0) {
 
-      if (this.size_t >= 32) {
-        this.size_t = s;
+      if (this.t_perso[this.id_t_perso][0].size >= 32) {
+        this.t_perso[this.id_t_perso][0].size = s;
         console.log(this.size);
       }
       else {
-        this.size_t = s + 1;
+        this.t_perso[this.id_t_perso][0].size = s + 1;
         console.log(this.size);
 
       }
@@ -432,7 +491,7 @@ export class ProductComponent implements OnInit {
 
     }
     else {
-      this.size_t = 1;
+      this.t_perso[this.id_t_perso][0].size = 1;
       //this.produit[0]['qty'] = this.qty;
 
     }
@@ -442,17 +501,19 @@ export class ProductComponent implements OnInit {
 
   dec_size_text(size) {
 
+    console.log(size);
+
     let s = parseFloat(size);
 
-    if (this.size_t == 1) {
+    if (this.t_perso[this.id_t_perso][0].size == 1) {
 
-      this.size_t = 1;
+      this.t_perso[this.id_t_perso][0].size = 1;
       //this.produit[0]['qty'] = this.qty;
 
 
     }
     else {
-      this.size_t = s - 1;
+      this.t_perso[this.id_t_perso][0].size = s - 1;
       //this.produit[0]['qty'] = this.qty;
 
       console.log(this.qty);
@@ -461,8 +522,8 @@ export class ProductComponent implements OnInit {
 
   change_size_text(size) {
 
-    this.size_t = parseFloat(size);
-    console.log(this.size_t);
+    this.t_perso[this.id_t_perso][0].size = parseFloat(size);
+    console.log(this.t_perso[this.id_t_perso][0].size);
 
   }
 
@@ -549,6 +610,8 @@ export class ProductComponent implements OnInit {
 
   }
 
+
+
   modal_change_family(){
     this.zoneText = false;
     this.w_p_info = false;
@@ -566,7 +629,7 @@ export class ProductComponent implements OnInit {
   }
 
   change_family(f){
-    this.t_family = f;
+    this.t_perso[this.id_t_perso][0].family = f;
     this.m_change_family = false;
     this.zoneText = true;
     this.w_p_info = false;
