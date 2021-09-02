@@ -18,8 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './pages/cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SelectProductComponent } from './pages/modal/select-product/select-product.component';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     Header2Component,
     Footer2Component,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    SelectProductComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FormsModule,
     BrowserAnimationsModule,
     DragDropModule,
+    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule
 

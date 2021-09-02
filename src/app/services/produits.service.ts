@@ -10,6 +10,7 @@ export class ProduitService {
       id: 0,
       name: 'Casquette',
       short_name: 'cap',
+      src_index : 'cap-white',
       price: "25.00",
       min_price: "25.00",
       max_price: "35.00",
@@ -38,6 +39,11 @@ export class ProduitService {
           couleur: 'red',
           image: 'cap-red',
           price: '12',
+        },
+        {
+          couleur: 'gray',
+          image: 'cap-gray',
+          price: '12',
         }
       ]
       
@@ -47,6 +53,7 @@ export class ProduitService {
         id: 1,
         name: 'Tasse',
         short_name: 'cup',
+        src_index : 'cup-white',
         price: "25.00",
         min_price: "25.00",
         max_price: "35.00",
@@ -60,20 +67,6 @@ export class ProduitService {
             couleur: 'white',
             image: 'cup-white',
             price: '12',
-          },
-          {
-            couleur: 'black',
-            image: 'cup-black',
-            price: '12',
-          },{
-            couleur: 'white',
-            image: 'cup-white',
-            price: '12',
-          },
-          {
-            couleur: 'black',
-            image: 'cup-black',
-            price: '12',
           }
         ]
       
@@ -83,6 +76,7 @@ export class ProduitService {
         name: 'T-shirt Homme & Femme',
         short_name: 'tshirt',
         src_index : 'tshirt-white',
+        size : ['S','M', 'L', 'XL', '2XL', '3XL' ],
         price: "25.00",
         min_price: "25.00",
         max_price: "35.00",
@@ -125,6 +119,45 @@ export class ProduitService {
         ]
       
       },
+      {
+        id: 3,
+        name: 'Body Suit Bébé',
+        short_name: 'bd',
+        src_index : 'bd-white',
+        price: "25.00",
+        min_price: "25.00",
+        max_price: "35.00",
+        is_size: true,
+        size : ['Newborn','6 Months', '12 Months', '18 Months' ],
+        variantes: [
+          {
+            couleur: 'white',
+            image: 'bd-white',
+            price: '12',
+          },
+          {
+            couleur: 'black',
+            image: 'bd-black',
+            price: '12',
+          },
+          {
+            couleur: 'red',
+            image: 'nd-red',
+            price: '12',
+          },
+          {
+            couleur: 'washed_yellow',
+            image: 'bd-washed_yellow',
+            price: '12',
+          },
+          {
+            couleur: 'navy',
+            image: 'tshirt-navy',
+            price: '12',
+          }
+        ]
+      
+      }
     
 
   ];

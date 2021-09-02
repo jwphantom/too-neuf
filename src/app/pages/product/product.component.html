@@ -9,7 +9,7 @@
 
                 <div class="col-md-1 col-xs-8">
                     <div class="tools">
-                        <div class="s_tools">
+                        <div mat-button (click)="openDialog()" class="s_tools">
                             <img src="assets/images/product/tools/tshirt.png">
                             <p>Produits</p>
                         </div>
@@ -30,17 +30,9 @@
                 <div class="col-md-5  col-xs-12 view_p" style="position:relative;">
                     <img src="assets/images/product/{{src_i_p}}.png" class="picture_product" draggable="false" alt="">
 
-                    <div class="text_border">
+                    <div class="text_border" *ngIf="short_name == 'tshirt' || short_name == 'bd'">
 
-
-                        <!-- <p class="text_perso" cdkDragBoundary=".text_border" cdkDrag
-                            [ngStyle]="{'color': (t_color === 'black') ? 'black' : (t_color === 'white') ? 'white' : (t_color === 'red') ? 'red' : (t_color === 'yellow') ? 'yellow' : (t_color === 'orange') ? 'orange' :(t_color === 'violet') ? 'violet' :(t_color === 'BlueViolet') ? 'BlueViolet' :(t_color === 'Chocolate') ? 'Chocolate' :(t_color === 'DarkMagenta') ? 'DarkMagenta' :(t_color === 'gold') ? 'gold' :(t_color === 'indigo') ? 'indigo' :(t_color === 'olive') ? 'olive' :(t_color === 'Pink') ? 'Pink' :(t_color === 'red') ? 'red' : (t_color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true) ? 'bold' : 'normal', 'font-style': (t_style === true) ? 'italic' : 'normal', 'font-weight': (t_weight === true) ? 'bold' : 'normal', 'text-decoration': (t_deco === true) ? 'underline' : 'none',
-                            'font-family': (t_family === 'Times New Roman') ? 'Times New Roman' : (t_family === 'Impact') ? 'Impact' : (t_family === 'Verdana') ? 'Verdana' : (t_family === 'Trebuchet') ? 'Trebuchet': (t_family === 'Gill Sans') ? 'Gill Sans': (t_family === 'Lucida Sans') ? 'Lucida Sans':(t_family === 'Cambria') ? 'Cambria':(t_family === 'Georgia') ? 'Georgia':(t_family === 'Cochin') ? 'Cochin' :''}">
-
-                            {{t_perso}}
-                        </p> -->
-
-                        <div *ngIf="active_t_p" >
+                        <div *ngIf="active_t_p">
                             <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso {{i}}" cdkDragBoundary=".text_border" cdkDrag
                                 [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
                             'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
@@ -48,7 +40,48 @@
                                 {{t_perso[i][0].word}}
                             </p>
                         </div>
+                        
 
+                        <div class="file-upload-content">
+                            <div class="image-title-wrap" cdkDrag>
+                                <img class="file-upload-image" src="#" alt="your image" *ngIf="active_i_p"
+                                    [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text_border_cup" *ngIf="short_name == 'cup'">
+
+                        <div *ngIf="active_t_p">
+                            <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso {{i}}" cdkDragBoundary=".text_border_cup" cdkDrag
+                                [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
+                            'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
+
+                                {{t_perso[i][0].word}}
+                            </p>
+                        </div>
+                        
+
+                        <div class="file-upload-content">
+                            <div class="image-title-wrap" cdkDrag>
+                                <img class="file-upload-image" src="#" alt="your image" *ngIf="active_i_p"
+                                    [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text_border_cap" *ngIf="short_name == 'cap'">
+
+                        <div *ngIf="active_t_p">
+                            <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso {{i}}" cdkDragBoundary=".text_border_cap" cdkDrag
+                                [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
+                            'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
+
+                                {{t_perso[i][0].word}}
+                            </p>
+                        </div>
 
                         <div class="file-upload-content">
                             <div class="image-title-wrap" cdkDrag>
@@ -88,23 +121,18 @@
                                 <div class="tab-pane fade show active" id="tab_list_l">
                                     {{size}}
                                 </div>
-                                <div class="tab-pane fade" id="tab_list_m">
-                                    M
-                                </div>
-                                <div class="tab-pane fade" id="tab_list_s">
-                                    S
-                                </div>
+                                
                             </div>
 
                             <ul class="nav product-size-menu" role="tablist" *ngIf="is_size">
-                                <li class="tab__item nav-item active">
+                                <!-- <li class="tab__item nav-item active">
                                     <a class="nav-link active" data-toggle="tab" role="tab"
                                         (click)="changeSize('S')">S</a>
+                                </li> -->
+                                <li class="tab__item nav-item" *ngFor="let s of size_p">
+                                    <a class="nav-link" data-toggle="tab" role="tab" (click)="changeSize(s)">{{ s }}</a>
                                 </li>
-                                <li class="tab__item nav-item">
-                                    <a class="nav-link" data-toggle="tab" role="tab" (click)="changeSize('M')">M</a>
-                                </li>
-                                <li class="tab__item nav-item">
+                                <!-- <li class="tab__item nav-item">
                                     <a class="nav-link " data-toggle="tab" role="tab" (click)="changeSize('L')">L</a>
                                 </li>
                                 <li class="tab__item nav-item ">
@@ -113,7 +141,7 @@
                                 <li class="tab__item nav-item">
                                     <a class="nav-link " data-toggle="tab" role="tab"
                                         (click)="changeSize('2XL')">2XL</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 

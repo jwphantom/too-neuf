@@ -5,6 +5,8 @@ import { ProduitService } from 'src/app/services/produits.service';
 import * as $ from 'jquery';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectProductComponent } from '../modal/select-product/select-product.component';
 
 
 @Component({
@@ -21,6 +23,8 @@ export class ProductComponent implements OnInit {
   max_price: String;
   short_name: String;
   variantes: any[];
+  size_p: any[];
+
   size: String;
   color: String;
   is_size: Boolean;
@@ -31,7 +35,7 @@ export class ProductComponent implements OnInit {
   zoneText: Boolean = false;
 
   t_perso: any[] = [];
-  id_t_perso : number;
+  id_t_perso: number;
 
   t_color: String = 'black';
 
@@ -59,7 +63,7 @@ export class ProductComponent implements OnInit {
   modal_import: Boolean = false;
   m_change_family: Boolean = false;
 
-  family = ['Times New Roman', 'Impact','Verdana','Trebuchet','Gill Sans','Courier New','Lucida Sans','Cambria','Cochin','Georgia']
+  family = ['Times New Roman', 'Impact', 'Verdana', 'Trebuchet', 'Gill Sans', 'Courier New', 'Lucida Sans', 'Cambria', 'Cochin', 'Georgia']
 
 
   cookiCart: any[];
@@ -83,25 +87,17 @@ export class ProductComponent implements OnInit {
   constructor(private produitService: ProduitService,
     private route: ActivatedRoute,
     private title: Title,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
 
     this.storeCart();
 
-    this.size = "S";
     this.color = "white";
 
-    const id = this.route.snapshot.params['id'];
 
-    this.name = this.produitService.getProduitById(+id).name;
-    this.src_i_p = this.produitService.getProduitById(+id).src_index;
-
-    this.price = this.produitService.getProduitById(+id).price;
-    this.short_name = this.produitService.getProduitById(+id).short_name;
-    this.variantes = this.produitService.getProduitById(+id).variantes;
-    this.is_size = this.produitService.getProduitById(+id).is_size;
-
+    this.store_product();
 
 
     this.update_produit();
@@ -114,6 +110,22 @@ export class ProductComponent implements OnInit {
     this.loadScript('../assets/js/move.js');
     this.loadScript('../assets/js/b_upload.js');
 
+
+  }
+
+  store_product() {
+    const id = this.route.snapshot.params['id'];
+
+    this.name = this.produitService.getProduitById(+id).name;
+    this.src_i_p = this.produitService.getProduitById(+id).src_index;
+    this.size_p = this.produitService.getProduitById(+id).size;
+
+    this.price = this.produitService.getProduitById(+id).price;
+    this.short_name = this.produitService.getProduitById(+id).short_name;
+    this.variantes = this.produitService.getProduitById(+id).variantes;
+    this.is_size = this.produitService.getProduitById(+id).is_size;
+
+    this.size = this.size_p[0];
 
   }
 
@@ -184,7 +196,7 @@ export class ProductComponent implements OnInit {
 
   changeColor(color: String) {
     this.color = color;
-    this.src_i_p = "tshirt-" + color;
+    this.src_i_p = this.short_name+"-"+ color;
     console.log(this.src_i_p);
     this.update_produit();
 
@@ -196,7 +208,7 @@ export class ProductComponent implements OnInit {
     //getted from binding
   }
 
-  change_t_w(param: Boolean,i) {
+  change_t_w(param: Boolean, i) {
 
     this.t_perso[i][0].bold = param;
     this.t_c_weight = !this.t_c_weight;
@@ -205,7 +217,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  change_t_s(param: Boolean,i) {
+  change_t_s(param: Boolean, i) {
 
     this.t_perso[i][0].italic = param;
     this.t_c_style = !this.t_c_style;
@@ -213,7 +225,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  change_t_d(param: Boolean,i) {
+  change_t_d(param: Boolean, i) {
 
     this.t_perso[i][0].underline = param;
     this.t_c_deco = !this.t_c_deco;
@@ -369,7 +381,7 @@ export class ProductComponent implements OnInit {
 
     let l = this.t_perso.length;
 
-    if(l == 0){
+    if (l == 0) {
       this.id_t_perso = 0;
       this.t_perso[0] = [
         {
@@ -379,16 +391,16 @@ export class ProductComponent implements OnInit {
               y: 0,
             }
           ],
-          bold : false,
-          italic : false,
-          underline : false,
-          color : 'black',
-          size : 10,
-          family : 'Times New Roman',
-          word : 'Votre Texte'+(l+1)
+          bold: false,
+          italic: false,
+          underline: false,
+          color: 'black',
+          size: 10,
+          family: 'Times New Roman',
+          word: 'Votre Texte' + (l + 1)
         }
       ]
-    }else{
+    } else {
       console.log(l);
 
       this.id_t_perso = l;
@@ -400,13 +412,13 @@ export class ProductComponent implements OnInit {
               y: 0,
             }
           ],
-          bold : false,
-          italic : false,
-          underline : false,
-          color : 'black',
-          family : 'Times New Roman',
-          size : 10,
-          word : 'Votre Texte'+(l+1)
+          bold: false,
+          italic: false,
+          underline: false,
+          color: 'black',
+          family: 'Times New Roman',
+          size: 10,
+          word: 'Votre Texte' + (l + 1)
         }
       ];
 
@@ -419,7 +431,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  edit_text(i){
+  edit_text(i) {
     this.zoneText = true;
     this.w_p_info = false;
     this.active_t_p = true;
@@ -612,7 +624,7 @@ export class ProductComponent implements OnInit {
 
 
 
-  modal_change_family(){
+  modal_change_family() {
     this.zoneText = false;
     this.w_p_info = false;
     this.modal_import = false
@@ -620,7 +632,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  c_modal_change_family(){
+  c_modal_change_family() {
     this.zoneText = true;
     this.w_p_info = false;
     this.modal_import = false
@@ -628,7 +640,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  change_family(f){
+  change_family(f) {
     this.t_perso[this.id_t_perso][0].family = f;
     this.m_change_family = false;
     this.zoneText = true;
@@ -637,6 +649,16 @@ export class ProductComponent implements OnInit {
     this.m_change_family = false;
 
 
+  }
+
+
+  openDialog() {
+    const dialogRef = this.dialog.open(SelectProductComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.store_product();
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 

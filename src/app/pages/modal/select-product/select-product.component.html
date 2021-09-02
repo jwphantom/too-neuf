@@ -1,0 +1,53 @@
+<h2 class="title" mat-dialog-title>Choisir Votre Produit</h2>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <div class="product-wrapper section-space--ptb_120">
+        <div class="container">
+
+            
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab_columns_01">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6" (click)="onViewProduct(i)" *ngFor="let produit of produits; let i = index">
+                            <!-- Single Product Item Start -->
+                            <div class="single-product-item text-center">
+                                <div class="products-images">
+                                    <a  class="product-thumbnail">
+                                        <img src="assets/images/product/{{produit.short_name}}.png" class="img-fluid"
+                                            alt="Product Images">
+
+                                        
+                                    </a>
+                                    <div class="product-actions">
+                                        <a data-toggle="modal" data-target="#prodect-modal"><i
+                                                class="p-icon icon-plus"></i><span class="tool-tip">Quick
+                                                View</span></a>
+                                        <a ><i class="p-icon icon-bag2"></i> <span
+                                                class="tool-tip">Add to cart</span></a>
+                                        <a><i class="p-icon icon-heart"></i> <span
+                                                class="tool-tip">Browse Wishlist</span></a>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <h6 class="prodect-title"><a>{{produit.name}}</a>
+                                    </h6>
+                                    <div class="prodect-price">
+                                        <span class="new-price">${{produit.min_price}}</span> - <span class="old-price"> ${{produit.max_price}}</span>
+                                    </div>
+                                </div>
+                            </div><!-- Single Product Item End -->
+                        </div>
+
+                    </div>
+                </div>
+                
+        
+            </div>
+
+
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-md btn-danger" mat-button mat-dialog-close>Fermer</button>
+</mat-dialog-actions>
