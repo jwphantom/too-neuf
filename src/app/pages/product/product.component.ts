@@ -144,11 +144,9 @@ export class ProductComponent implements OnInit {
   inc_qty(qte) {
 
     let q = parseFloat(qte);
-    // console.log(this.qty); 
 
     if (this.qty > 0) {
       this.qty = q + 1;
-      console.log(this.qty);
       this.produit[0]['qty'] = this.qty;
 
     }
@@ -176,14 +174,12 @@ export class ProductComponent implements OnInit {
       this.qty = q - 1;
       this.produit[0]['qty'] = this.qty;
 
-      console.log(this.qty);
     }
   }
 
   change_qty(qte) {
 
     this.qty = parseFloat(qte);
-    console.log(this.qty);
 
   }
 
@@ -197,14 +193,12 @@ export class ProductComponent implements OnInit {
   changeColor(color: String) {
     this.color = color;
     this.src_i_p = this.short_name+"-"+ color;
-    console.log(this.src_i_p);
     this.update_produit();
 
   }
 
   change_t_Color(color: string) {
     //getted from event
-    //console.log(id);
     //getted from binding
   }
 
@@ -262,9 +256,6 @@ export class ProductComponent implements OnInit {
 
     this.storeCart();
 
-    console.log(produit);
-    //console.log(this.qty);
-
 
     let iCart;
     let index;
@@ -290,11 +281,9 @@ export class ProductComponent implements OnInit {
 
         }
         else {
-          console.log(0);
 
           // produit[0]['qty'] = 1;
           // this.cart.push(produit);
-          // console.log(this.cart);
           // this.cookieService.set('cart', JSON.stringify(this.cart))
           // break;
           eCart = 0;
@@ -303,7 +292,6 @@ export class ProductComponent implements OnInit {
       }
 
       if (iCart > 0) {
-        console.log("ic");
         this.cart[index][0]['qty'] = this.cart[index][0]['qty'] + 1;
         localStorage.setItem('cart', JSON.stringify(this.cart));
 
@@ -311,7 +299,6 @@ export class ProductComponent implements OnInit {
       if (eCart == 0) {
         //produit[0]['qty'] = this.qty;
         this.cart.push(produit);
-        console.log("eC");
         localStorage.setItem('cart', JSON.stringify(this.cart));
 
       }
@@ -401,7 +388,6 @@ export class ProductComponent implements OnInit {
         }
       ]
     } else {
-      console.log(l);
 
       this.id_t_perso = l;
       let param = [
@@ -427,11 +413,11 @@ export class ProductComponent implements OnInit {
 
     }
 
-    console.log(this.t_perso);
 
   }
 
   edit_text(i) {
+    console.log(i);
     this.zoneText = true;
     this.w_p_info = false;
     this.active_t_p = true;
@@ -440,11 +426,26 @@ export class ProductComponent implements OnInit {
     this.id_t_perso = i;
   }
 
+  delete_text(id) {
+
+    if(id == 0)
+    {
+      this.t_perso.splice(id, 1); 
+      this.close_text_p();
+    }
+    else{
+      this.t_perso.splice(id, 1); 
+      this.edit_text(id-1)
+
+    }
+
+  }
+
+
   write_t_p(ev) {
 
     try {
       this.t_perso = ev.target.value;
-      console.log(this.t_perso);
 
     } catch (e) {
       console.info('could not set textarea-value');
@@ -491,11 +492,9 @@ export class ProductComponent implements OnInit {
 
       if (this.t_perso[this.id_t_perso][0].size >= 32) {
         this.t_perso[this.id_t_perso][0].size = s;
-        console.log(this.size);
       }
       else {
         this.t_perso[this.id_t_perso][0].size = s + 1;
-        console.log(this.size);
 
       }
 
@@ -513,7 +512,6 @@ export class ProductComponent implements OnInit {
 
   dec_size_text(size) {
 
-    console.log(size);
 
     let s = parseFloat(size);
 
@@ -527,15 +525,12 @@ export class ProductComponent implements OnInit {
     else {
       this.t_perso[this.id_t_perso][0].size = s - 1;
       //this.produit[0]['qty'] = this.qty;
-
-      console.log(this.qty);
     }
   }
 
   change_size_text(size) {
 
     this.t_perso[this.id_t_perso][0].size = parseFloat(size);
-    console.log(this.t_perso[this.id_t_perso][0].size);
 
   }
 
@@ -570,7 +565,6 @@ export class ProductComponent implements OnInit {
   inc_size_image(size) {
 
     let s = parseFloat(size);
-    // console.log(this.qty); 
 
     if (this.size_i > 0) {
 
@@ -603,8 +597,6 @@ export class ProductComponent implements OnInit {
     else {
       this.size_i = s - 1;
       //this.produit[0]['qty'] = this.qty;
-
-      console.log(this.qty);
     }
   }
 
