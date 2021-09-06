@@ -28,6 +28,8 @@ export class ProductComponent implements OnInit {
 
   selectedFile: ImageSnippet;
 
+  load: Boolean = false;
+
 
   name: String;
   price: String;
@@ -75,6 +77,7 @@ export class ProductComponent implements OnInit {
   active_i_p: Boolean = true;
 
   modal_import: Boolean = false;
+  import_true : Boolean = false;
   m_change_family: Boolean = false;
 
   family = ['Times New Roman', 'Impact', 'Verdana', 'Trebuchet', 'Gill Sans', 'Courier New', 'Lucida Sans', 'Cambria', 'Cochin', 'Georgia']
@@ -685,6 +688,10 @@ export class ProductComponent implements OnInit {
   }
 
   async processFile(imageInput: any) {
+
+    this.load = true;
+
+
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
@@ -704,7 +711,7 @@ export class ProductComponent implements OnInit {
             //this.toastr.success('success', 'Importation Complète');
 
             localStorage.setItem('url_img', JSON.stringify(res));
-            const test = await this.display_img()
+            const test = await this.display_img();
 
           },
           (error) => {
@@ -731,16 +738,37 @@ export class ProductComponent implements OnInit {
       this.src_i_m = JSON.parse(localStorage.getItem('url_img')).url;
     }
 
+    $('#snackbar').show();
+
+    setTimeout(function () {
+      $('#snackbar').hide();
+    }, 3000);
+
+    this.load = false;
+    this.import_true = true;
+
+
+
   }
 
   removeUpload() {
+    this.import_true = false;
+
     $(".image-upload-input").val(null);
     $('.file-upload-content').hide();
     $('.image-upload-wrap').show();
     $('.file-upload-btn').show();
     $('.file-upload-input').show();
 
+  }
 
+  edit_image_import(){
+    this.zoneText = false;
+    this.w_p_info = false;
+    this.modal_import = true;
+    this.active_i_p = true;
+    this.m_change_family = false;
+    this.import_true = true;
 
   }
 

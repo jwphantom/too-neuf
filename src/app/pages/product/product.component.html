@@ -9,7 +9,8 @@
 
                 <div class="col-md-1 col-xs-8">
                     <div class="tools">
-                        <div mat-button (click)="openDialog()" class="s_tools col-lg-12 col-md-12 col-sm-4 col-xs-4 col-4">
+                        <div mat-button (click)="openDialog()"
+                            class="s_tools col-lg-12 col-md-12 col-sm-4 col-xs-4 col-4">
                             <img src="assets/images/product/tools/tshirt.png">
                             <p>Produits</p>
                         </div>
@@ -32,9 +33,9 @@
 
                     <div class="text_border" *ngIf="short_name == 'tshirt' || short_name == 'bd'">
 
-                        <div *ngIf="active_t_p" >
-                            <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso text_perso_{{i}}"
-                                cdkDragBoundary=".text_border" cdkDrag
+                        <div *ngIf="active_t_p">
+                            <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index"
+                                class="text_perso text_perso_{{i}}" cdkDragBoundary=".text_border" cdkDrag
                                 [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
                             'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
 
@@ -43,7 +44,7 @@
                         </div>
 
 
-                        <div class="file-upload-content">
+                        <div class="file-upload-content" (click)="edit_image_import()">
                             <div class="image-title-wrap" cdkDrag>
                                 <img class="file-upload-image" [src]="src_i_m" alt="your image" *ngIf="active_i_p"
                                     [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
@@ -65,7 +66,7 @@
                         </div>
 
 
-                        <div class="file-upload-content">
+                        <div class="file-upload-content" (click)="edit_image_import()">
                             <div class="image-title-wrap" cdkDrag>
                                 <img class="file-upload-image" [src]="src_i_m" alt="your image" *ngIf="active_i_p"
                                     [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
@@ -86,7 +87,7 @@
                             </p>
                         </div>
 
-                        <div class="file-upload-content">
+                        <div class="file-upload-content" (click)="edit_image_import()">
                             <div class="image-title-wrap" cdkDrag>
                                 <img class="file-upload-image" [src]="src_i_m" alt="your image" *ngIf="active_i_p"
                                     [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
@@ -94,7 +95,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div>
 
 
@@ -320,25 +321,26 @@
 
                     </div>
 
+                    <div id="snackbar"><i class="fas fa-check"></i> Importtion Terminé</div>
 
-                    <div class="widget_import_i" *ngIf="modal_import">
+                    <div *ngIf="!load">
+                        <div class="widget_import_i" *ngIf="modal_import">
 
-                        <div class="dialog">
-                            <a (click)="close_modal_i()" class="close-classic"></a>
-                        </div>
+                            <div class="dialog">
+                                <a (click)="close_modal_i()" class="close-classic"></a>
+                            </div>
 
-                        <input class="image-upload-input" #imageInput type="file" accept="image/*"
-                            (change)="processFile(imageInput)">
+                            <input *ngIf="!import_true" class="image-upload-input" #imageInput type="file"
+                                accept="image/*" (change)="processFile(imageInput)">
 
 
-                        <div class="file-upload">
-                            <!-- <button class="file-upload-btn" type="button"
+                            <div *ngIf="import_true">
+                                <!-- <button class="file-upload-btn" type="button"
                                 onclick="$('.file-upload-input').trigger( 'click' )"><i class="fas fa-upload"></i>
                                 &nbsp; Importer l'image</button> -->
 
 
 
-                            <div class="file-upload-content">
                                 <div class="quickview-quality">
                                     <div class="container">
 
@@ -355,23 +357,29 @@
 
                                             </div>
 
+
                                         </div>
 
                                     </div>
-
-                                </div>
-                                <br>
-                                <div class="image-title-wrap row">
-                                    <button type="button" (click)="removeUpload()" class="remove-image"><i
-                                            class="fas fa-trash"></i> Retirer L'image</button>
+                                    <br>
+                                    <div class="image-title-wrap row">
+                                        <button type="button" (click)="removeUpload()" class="remove-image"><i
+                                                class="fas fa-trash"></i> Retirer L'image</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <p>
-                            En téléchargeant une image, vous garantissez que votre utilisation de l'image n'enfreint
-                            aucun droit ou loi.
-                        </p>
+                            <p>
+                                En téléchargeant une image, vous garantissez que votre utilisation de l'image n'enfreint
+                                aucun droit ou loi.
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="widget_import_i" *ngIf="load">
+
+                        <div class="lds-dual-ring"></div>
 
                     </div>
 
