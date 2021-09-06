@@ -66,7 +66,7 @@ export class ContactComponent implements OnInit {
     this.load = true;
 
     this.http
-      .post('http://localhost:3001/api/send-message', formValue)
+      .post('https://server-too-neuf.herokuapp.com/api/send-message', formValue)
       .subscribe(
         (res) => {
           $('#snackbar').show();

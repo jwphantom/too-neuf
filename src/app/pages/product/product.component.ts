@@ -123,8 +123,19 @@ export class ProductComponent implements OnInit {
 
 
     this.loadScript('../assets/js/move.js');
+    this.loadScript('../assets/js/vendor/modernizr-2.8.3.min.js');
+    this.loadScript('../assets/js/vendor/jquery-3.5.1.min.js');
+    this.loadScript('../assets/js/vendor/jquery-migrate-3.3.0.min.js');
+    this.loadScript('../assets/js/vendor/bootstrap.min.js');
+    this.loadScript('../assets/js/plugins/fullpage.min.js');
+    this.loadScript('../assets/js/plugins/slick.min.js');
+    this.loadScript('../assets/js/plugins/countdown.min.js');
+    this.loadScript('../assets/js/plugins/magnific-popup.js');
+    this.loadScript('../assets/js/plugins/easyzoom.js');
+    this.loadScript('../assets/js/plugins/images-loaded.min.js');
+    this.loadScript('../assets/js/plugins/isotope.min.js');
+    this.loadScript('../assets/js/plugins/wow.min.js');
     this.loadScript('../assets/js/main.js');
-
 
   }
 
@@ -688,7 +699,7 @@ export class ProductComponent implements OnInit {
       formData.append('image', this.selectedFile.file);
 
       this.http
-        .post('http://localhost:3001/api/upload', formData)
+        .post('https://server-too-neuf.herokuapp.com/api/upload', formData)
         .subscribe(
           async (res) => {
 
