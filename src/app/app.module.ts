@@ -14,14 +14,19 @@ import { Header2Component } from './static/header2/header2.component';
 import { Footer2Component } from './static/footer2/footer2.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ProduitService } from './services/produits.service';
+import { UploadFileService } from './services/upload-file.service';
+import { ContactService } from './services/contact.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './pages/cart/cart.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
 import {MatDialogModule} from '@angular/material/dialog';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SelectProductComponent } from './pages/modal/select-product/select-product.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FileUploadModule } from 'ng2-file-upload';
+import { ContactComponent } from './pages/contact/contact.component';
 
 
 @NgModule({
@@ -38,7 +43,11 @@ import { SelectProductComponent } from './pages/modal/select-product/select-prod
     Footer2Component,
     ProductComponent,
     CartComponent,
-    SelectProductComponent
+    SelectProductComponent,
+    ContactComponent,
+    
+    
+
   ],
   imports: [
     BrowserModule,
@@ -48,12 +57,17 @@ import { SelectProductComponent } from './pages/modal/select-product/select-prod
     DragDropModule,
     MatDialogModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    FormsModule,
+    FileUploadModule
 
   ],
   providers: [
     ProduitService,
+    UploadFileService,
+    ContactService
+    
   ],
   bootstrap: [AppComponent]
 })

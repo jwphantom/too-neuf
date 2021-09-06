@@ -1,0 +1,139 @@
+<app-header2 [cart]="cart.length"></app-header2>
+
+<div id="main-wrapper">
+    <div class="site-wrapper-reveal border-bottom">
+        <div class="contact-us-info-area mt-30 section-space--mb_60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="single-contact-info-item">
+                            <div class="icon">
+                                <i class="icon-clock3"></i>
+                            </div>
+                            <div class="iconbox-desc">
+                                <h6 class="mb-10">Horaire D'ouverture</h6>
+                                <p>Lun – Ven : 8:30 – 18:00 <br>Sam – Dim : 9:00 – 17:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-contact-info-item">
+                            <div class="icon">
+                                <i class="icon-telephone"></i>
+                            </div>
+                            <div class="iconbox-desc">
+                                <h6 class="mb-10">Telephone</h6>
+                                <p>+1 (514) 929-8786 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-contact-info-item">
+                            <div class="icon">
+                                <i class="icon-envelope-open"></i>
+                            </div>
+                            <div class="iconbox-desc">
+                                <h6 class="mb-10">Email</h6>
+                                <p>contact@tooneuf.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-contact-info-item">
+                            <div class="icon">
+                                <i class="icon-map-marker"></i>
+                            </div>
+                            <div class="iconbox-desc">
+                                <h6 class="mb-10">Localisation</h6>
+                                <p>Montreal, Quebec, Canada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-us-page-warpper section-space--pb_120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="border-top">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7">
+                                    <div id="snackbar"><i class="fas fa-check"></i> Message Envoyé</div>
+
+                                    <div class="contact-form-wrap  section-space--mt_60" *ngIf="!load">
+                                        <h5 class="mb-10">Contactez-nous</h5>
+                                        <p>Écrivez-nous un courrier !</p>
+                                        <form [formGroup]="contactForm" (ngSubmit)="onSubmitForm()" id="contact-form" class="mt-30" >
+                                            <div class="contact-form">
+                                                <div class="contact-input">
+                                                    <div class="contact-inner">
+                                                        <input type="text" placeholder="Nom *" formControlName="name">
+                                                    </div>
+                                                    <div class="contact-inner">
+                                                        <input type="email" placeholder="Email *"  formControlName="email">
+                                                    </div>
+                                                </div>
+                                                <div class="contact-inner">
+                                                    <input  type="text" placeholder="Objet *"  formControlName="objet">
+                                                </div>
+                                                <div class="contact-inner contact-message">
+                                                    <textarea 
+                                                        placeholder="Please describe what you need." formControlName="message"></textarea>
+                                                </div>
+                                                <div class="submit-btn mt-20">
+                                                    <button class="btn btn--black btn--md" type="submit" [disabled]="contactForm.invalid">Envoyer</button>
+                                                    <p class="form-messege"></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="contact-form-wrap-1  section-space--mt_60" *ngIf="load">
+
+                                        <div class="lds-dual-ring"></div>
+
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map-area">
+            <div class="google-map">
+                <div id="googleMap-1" class="embed-responsive-item googleMap-1" data-lat="45.5581968"
+                    data-Long="-73.8703878"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--====================  footer area ====================-->
+    <app-footer2></app-footer2>
+
+    <!--====================  End of footer area  ====================-->
+
+
+
+
+
+
+    <!--====================  mobile menu overlay ====================-->
+    <app-menu></app-menu>
+    <!--====================  End of mobile menu overlay  ====================-->
+
+
+
+    <!--  offcanvas Minicart Start -->
+    <app-mini-cart></app-mini-cart>
+    <!--  offcanvas Minicart End -->
+
+
+    <!--====================  search overlay ====================-->
+    <app-scroll-to-top></app-scroll-to-top>

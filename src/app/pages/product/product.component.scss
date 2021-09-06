@@ -7,7 +7,6 @@
 }
 
 .tools {
-    width: 100%;
     height: auto;
     margin-bottom: 40px;
     border-color: #d4d2d2;
@@ -25,7 +24,6 @@
 }
 
 .tools .s_tools {
-    width: 100%;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -35,6 +33,24 @@
 .tools .s_tools:hover {
     background-color: #f1f1f1;
     cursor: pointer;
+}
+
+@media screen and (max-width: 580px) {
+    .tools .s_tools {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: white;
+        float: left;
+    }
+
+    .tools {
+        height: 100%;
+        margin-bottom: 40px;
+        border-color: #d4d2d2;
+        border-style: solid;
+        border-width: 1px;
+    }
 }
 
 .view_p .picture_product {
@@ -54,6 +70,27 @@
     background: white;
     padding: 10px;
     margin: 10px;
+    max-height: 400px;
+}
+
+.widget_info {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.widget_import_i {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.widget_text_p {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.widget_change_family {
+    max-height: 300px;
+    overflow-y: scroll;
 }
 
 .widget .title {
@@ -127,7 +164,6 @@ hr {
     position: absolute;
 }
 
-
 .text_border_cup {
     width: 280px;
     height: 200px;
@@ -143,12 +179,11 @@ hr {
 }
 
 @media screen and (max-width: 580px) {
-
     .text_border:active {
         border: dotted #ccc 2px;
         position: absolute;
     }
-    
+
     .text_border {
         width: 125px;
         height: 180px;

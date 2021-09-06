@@ -17,9 +17,6 @@ export class MiniCartComponent implements OnInit {
 
     this.storeCart();
     this.calculatebill()
-    console.log('yo-mini-cart');
-
-
   }
 
   storeCart(){

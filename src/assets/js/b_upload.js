@@ -23,7 +23,7 @@ function readURL(input) {
   }
   
   function removeUpload() {
-    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    $('.image-upload-input').replaceWith($('.image-upload-input').clone());
     $('.file-upload-content').hide();
     $('.image-upload-wrap').show();
     $('.file-upload-btn').show();

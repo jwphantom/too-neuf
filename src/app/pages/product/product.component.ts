@@ -1,12 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ProduitService } from 'src/app/services/produits.service';
 import * as $ from 'jquery';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectProductComponent } from '../modal/select-product/select-product.component';
+import { HttpClient, HttpRequest, HttpEvent, HttpResponse, HttpEventType } from '@angular/common/http';
+import { UploadFileService } from 'src/app/services/upload-file.service';
+import { Observable } from 'rxjs';
+import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
+import { CdkDragEnd } from '@angular/cdk/drag-drop/drag-events';
+
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) { }
+}
 
 
 @Component({
@@ -15,6 +25,8 @@ import { SelectProductComponent } from '../modal/select-product/select-product.c
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+
+  selectedFile: ImageSnippet;
 
 
   name: String;
@@ -30,6 +42,8 @@ export class ProductComponent implements OnInit {
   is_size: Boolean;
 
   src_i_p: String;
+
+  src_i_m: String;
 
   w_p_info: Boolean = true;
   zoneText: Boolean = false;
@@ -87,8 +101,11 @@ export class ProductComponent implements OnInit {
   constructor(private produitService: ProduitService,
     private route: ActivatedRoute,
     private title: Title,
-    private httpClient: HttpClient,
-    public dialog: MatDialog) { }
+    private http: HttpClient,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService,
+    private uploadService: UploadFileService) { }
 
   ngOnInit() {
 
@@ -105,10 +122,8 @@ export class ProductComponent implements OnInit {
     this.title.setTitle("TOONEUF - Produits -" + this.name);
 
 
-
-
     this.loadScript('../assets/js/move.js');
-    this.loadScript('../assets/js/b_upload.js');
+    this.loadScript('../assets/js/main.js');
 
 
   }
@@ -192,7 +207,7 @@ export class ProductComponent implements OnInit {
 
   changeColor(color: String) {
     this.color = color;
-    this.src_i_p = this.short_name+"-"+ color;
+    this.src_i_p = this.short_name + "-" + color;
     this.update_produit();
 
   }
@@ -267,41 +282,46 @@ export class ProductComponent implements OnInit {
       localStorage.setItem('cart', JSON.stringify(this.cart));
 
     } else {
-      for (let i = 0; i < this.cart.length; i++) {
 
-        if (this.cart[i][0]['id'] == produit[0]['id']) {
-          if (this.cart[i][0]['color'] == produit[0]['color'] && this.cart[i][0]['size'] == produit[0]['size']) {
-            iCart = i + 1;
-            index = i;
-          }
-          else {
-            eCart = 0;
+      this.cart.push(produit);
+      localStorage.setItem('cart', JSON.stringify(this.cart));
 
-          }
 
-        }
-        else {
+      // for (let i = 0; i < this.cart.length; i++) {
 
-          // produit[0]['qty'] = 1;
-          // this.cart.push(produit);
-          // this.cookieService.set('cart', JSON.stringify(this.cart))
-          // break;
-          eCart = 0;
-        }
+      //   if (this.cart[i][0]['id'] == produit[0]['id']) {
+      //     if (this.cart[i][0]['color'] == produit[0]['color'] && this.cart[i][0]['size'] == produit[0]['size']) {
+      //       iCart = i + 1;
+      //       index = i;
+      //     }
+      //     else {
+      //       eCart = 0;
 
-      }
+      //     }
 
-      if (iCart > 0) {
-        this.cart[index][0]['qty'] = this.cart[index][0]['qty'] + 1;
-        localStorage.setItem('cart', JSON.stringify(this.cart));
+      //   }
+      //   else {
 
-      }
-      if (eCart == 0) {
-        //produit[0]['qty'] = this.qty;
-        this.cart.push(produit);
-        localStorage.setItem('cart', JSON.stringify(this.cart));
+      //     // produit[0]['qty'] = 1;
+      //     // this.cart.push(produit);
+      //     // this.cookieService.set('cart', JSON.stringify(this.cart))
+      //     // break;
+      //     eCart = 0;
+      //   }
 
-      }
+      // }
+
+      // if (iCart > 0) {
+      //   this.cart[index][0]['qty'] = this.cart[index][0]['qty'] + 1;
+      //   localStorage.setItem('cart', JSON.stringify(this.cart));
+
+      // }
+      // if (eCart == 0) {
+      //   //produit[0]['qty'] = this.qty;
+      //   this.cart.push(produit);
+      //   localStorage.setItem('cart', JSON.stringify(this.cart));
+
+      // }
 
 
 
@@ -314,7 +334,6 @@ export class ProductComponent implements OnInit {
 
     const id = this.route.snapshot.params['id'];
 
-
     if (this.is_size) {
       this.produit = [
         {
@@ -323,12 +342,10 @@ export class ProductComponent implements OnInit {
           short_name: this.short_name,
           price: this.price,
           qty: this.qty,
-          size: this.size,
+          text: this.t_perso,
+          src_img: this.src_i_m,
           color: this.color,
-          t_perso: this.t_perso,
-          t_weight: this.t_weight,
-          t_style: this.t_style,
-
+          size: this.size,
 
         }
       ];
@@ -342,13 +359,8 @@ export class ProductComponent implements OnInit {
           short_name: this.short_name,
           price: this.price,
           qty: this.qty,
-          size: 'NaN',
-          color: this.color,
-          var_image: this.short_name + '-' + this.color,
-          t_perso: this.t_perso,
-          t_weight: this.t_weight,
-          t_style: this.t_style,
-
+          text: this.t_perso,
+          src_img: this.src_i_m
 
         }
       ];
@@ -366,6 +378,7 @@ export class ProductComponent implements OnInit {
     this.modal_import = false;
     this.m_change_family = false;
 
+
     let l = this.t_perso.length;
 
     if (l == 0) {
@@ -373,10 +386,8 @@ export class ProductComponent implements OnInit {
       this.t_perso[0] = [
         {
           variantes: [
-            {
-              x: 0,
-              y: 0,
-            }
+
+
           ],
           bold: false,
           italic: false,
@@ -384,7 +395,7 @@ export class ProductComponent implements OnInit {
           color: 'black',
           size: 10,
           family: 'Times New Roman',
-          word: 'Votre Texte' + (l + 1)
+          word: 'Votre Texte' + (l + 1),
         }
       ]
     } else {
@@ -393,10 +404,7 @@ export class ProductComponent implements OnInit {
       let param = [
         {
           variantes: [
-            {
-              x: 0,
-              y: 0,
-            }
+
           ],
           bold: false,
           italic: false,
@@ -404,7 +412,8 @@ export class ProductComponent implements OnInit {
           color: 'black',
           family: 'Times New Roman',
           size: 10,
-          word: 'Votre Texte' + (l + 1)
+          word: 'Votre Texte' + (l + 1),
+
         }
       ];
 
@@ -414,30 +423,39 @@ export class ProductComponent implements OnInit {
     }
 
 
+    this.update_produit();
+
+
+  }
+
+  dragEnd(event: CdkDragEnd) {
+    this.t_perso[this.id_t_perso][0].variantes = event.distance;
   }
 
   edit_text(i) {
-    console.log(i);
+
     this.zoneText = true;
     this.w_p_info = false;
     this.active_t_p = true;
     this.modal_import = false;
     this.m_change_family = false;
     this.id_t_perso = i;
+
+    this.update_produit();
   }
 
   delete_text(id) {
 
-    if(id == 0)
-    {
-      this.t_perso.splice(id, 1); 
+    if (id == 0) {
+      this.t_perso.splice(id, 1);
       this.close_text_p();
     }
-    else{
-      this.t_perso.splice(id, 1); 
-      this.edit_text(id-1)
+    else {
+      this.t_perso.splice(id, 1);
+      this.edit_text(id - 1)
 
     }
+    this.update_produit();
 
   }
 
@@ -474,13 +492,6 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  upload() {
-    console.log(this.uploadForm.value);
-    this.httpClient.post('http://localhost:8888/file-upload.php', this.uploadForm.value)
-      .subscribe(response => {
-        alert('Image has been uploaded.');
-      })
-  }
 
 
   inc_size_text(size) {
@@ -606,8 +617,11 @@ export class ProductComponent implements OnInit {
 
   }
 
-  getPosition(event) {
-    var p = $(".text_perso");
+  getPosition(event, i) {
+
+    var text = '.text_perso_' + i;
+
+    var p = $(text);
     var offset = p.offset();
     console.log("x: " + offset.left + ", y: " + offset.top);
     //p.html("left: " + offset.left + ", top: " + offset.top);
@@ -653,6 +667,76 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  // uploadImage(){
+  //   this.uploadService.import("e");
+  // }
+
+  uploadImage() {
+    this.uploadService.uploadImage("url");
+  }
+
+  async processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      const formData = new FormData();
+
+      formData.append('image', this.selectedFile.file);
+
+      this.http
+        .post('http://localhost:3001/api/upload', formData)
+        .subscribe(
+          async (res) => {
+
+            //this.toastr.success('success', 'Importation Complète');
+
+            localStorage.setItem('url_img', JSON.stringify(res));
+            const test = await this.display_img()
+
+          },
+          (error) => {
+            console.log('Erreur ! : ' + error);
+          }
+        );
+
+
+
+      //this.uploadService.saveImage(this.selectedFile.file);
+
+
+    });
+
+    reader.readAsDataURL(file);
+
+  }
+
+  display_img() {
+    $('.file-upload-content').show();
+
+    let url = localStorage.getItem('url_img');
+    if (url) {
+      this.src_i_m = JSON.parse(localStorage.getItem('url_img')).url;
+    }
+
+  }
+
+  removeUpload() {
+    $(".image-upload-input").val(null);
+    $('.file-upload-content').hide();
+    $('.image-upload-wrap').show();
+    $('.file-upload-btn').show();
+    $('.file-upload-input').show();
+
+
+
+  }
+
+
+
+
 
 }
-
