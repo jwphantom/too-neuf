@@ -49,7 +49,7 @@ export class SelectProductComponent implements OnInit {
   onViewProduct(id : number){
 
     this.dialog.closeAll();
-    this.router.navigate(['/shop/product', id]);
+    this.router.navigate(['/create-own', id]);
 
 
   }

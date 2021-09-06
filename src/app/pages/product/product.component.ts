@@ -151,8 +151,6 @@ export class ProductComponent implements OnInit {
     this.variantes = this.produitService.getProduitById(+id).variantes;
     this.is_size = this.produitService.getProduitById(+id).is_size;
 
-    this.size = this.size_p[0];
-
   }
 
 
