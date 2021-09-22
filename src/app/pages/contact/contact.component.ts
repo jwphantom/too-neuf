@@ -32,7 +32,7 @@ export class ContactComponent implements OnInit {
 
     this.contactFormulaire();
 
-
+    this.loadToolbar();
     this.loadScript('../assets/js/vendor/modernizr-2.8.3.min.js');
     this.loadScript('../assets/js/vendor/jquery-3.5.1.min.js');
     this.loadScript('../assets/js/vendor/jquery-migrate-3.3.0.min.js');
@@ -125,6 +125,34 @@ export class ContactComponent implements OnInit {
       $('#snackbar').hide();
     }, 3000);
 
+
+  }
+
+  loadToolbar() {
+
+    /*----------------------------------------*/
+    /*  Toolbar Button
+      /*----------------------------------------*/
+    var $overlay = $('.global-overlay');
+    $('.toolbar-btn').on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $this = $(this);
+      var target = $this.attr('href');
+      var prevTarget = $this.parent().siblings().children('.toolbar-btn').attr('href');
+      $(target).toggleClass('open');
+      $(prevTarget).removeClass('open');
+      $($overlay).addClass('overlay-open');
+    });/*----------------------------------------*/
+    /*  Close Button Actions
+      /*----------------------------------------*/
+    $('.btn-close, .btn-close-2, body .global-overlay').on('click', function (e) {
+      var dom = $('body').children();
+      e.preventDefault();
+      var $this = $(this);
+      $this.parents('.open').removeClass('open');
+      dom.find('.global-overlay').removeClass('overlay-open');
+    });
 
   }
 

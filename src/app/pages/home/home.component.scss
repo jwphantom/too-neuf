@@ -56,6 +56,9 @@
 .offer-colection-area .bg {
     background-color: #f2f2f2;
     padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
 }
 
 .offer-colection-area .single-support-item h1,
@@ -140,8 +143,29 @@
     font-weight: 700;
 }
 
+.about-us-content_6 h2{
+    font-size: 27px;
+}
+
+.t_etape_perso{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.t_etape_perso h2{
+    font-size: 25px;
+}
+
 @media (max-width: 767.98px) {
     .section-header h2 {
         font-size: 30px;
     }
 }
+
+
+// .container-fluid .slide-one{
+//     background: url('assets/images/hero/home-4.jpeg')
+  
+//   }
+
+

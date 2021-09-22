@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class UploadFileService {
-    private baseUrl = 'http://localhost:3001/api';
+    private baseUrl = 'https://server-too-neuf.herokuapp.com/api';
 
 
 

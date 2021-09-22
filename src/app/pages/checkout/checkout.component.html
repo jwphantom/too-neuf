@@ -1,0 +1,195 @@
+<app-header2 [cart]="cart.length"></app-header2>
+<app-cookies></app-cookies>
+
+
+<div id="snackbar"><i class="fas fa-check"></i> Paiement Effectué</div>
+
+
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row breadcrumb_box  align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center text-sm-left">
+                        <h2 class="breadcrumb-title">Caisse</h2>
+                    </div>
+                    <div class="col-lg-6  col-md-6 col-sm-6">
+                        <!-- breadcrumb-list start -->
+                        <ul class="breadcrumb-list text-center text-sm-right">
+                            <li class="breadcrumb-item"><a routerLink="/">Accueil</a></li>
+                            <li class="breadcrumb-item active"><a routerLink="/checkout">Caisse</a></li>
+                        </ul>
+                        <!-- breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb-area end -->
+
+
+<div id="main-wrapper">
+
+
+    <div class="site-wrapper-reveal border-bottom">
+        <!-- checkout start -->
+        <div class="checkout-main-area section-space--ptb_90">
+            <div class="container">
+
+                <div class="checkout-wrap">
+                    <form [formGroup]="checkForm">
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <br>
+                                <br>
+                                <div class="billing-info-wrap mr-100">
+                                    <h6 class="mb-20">Détails de la livraison</h6>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="billing-info mb-25">
+                                                <label>Prénom <span class="required" title="required">*</span></label>
+                                                <input  [(ngModel)]="lname" type="text" formControlName="lname">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="billing-info mb-25">
+                                                <label>Nom <span class="required" title="required">*</span></label>
+                                                <input [(ngModel)]="fname" type="text" formControlName="fname">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="billing-select mb-25">
+                                                <label>Pays <span class="required" title="required">*</span></label>
+                                                <select [(ngModel)]="country" class="select-active" formControlName="country">
+                                                    <option *ngFor="let c of countries" value="{{c.name}}">{{ c.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="billing-info mb-25">
+                                                <label>Adresse de la rue <span class="required"
+                                                        title="required">*</span></label>
+                                                <input [(ngModel)]="street_a" class="billing-address"
+                                                    placeholder="House number and street name" type="text"
+                                                    formControlName="street_a">
+                                                <input [(ngModel)]="street_a_o" placeholder="Apartment, suite, unit etc. (optional)" type="text"
+                                                    formControlName="street_a_o">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="billing-info mb-25">
+                                                <label>Ville <span class="required" title="required">*</span></label>
+                                                <input [(ngModel)]="city" type="text" formControlName="city">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="billing-info mb-25">
+                                                <label>Code Postale (optional)</label>
+                                                <input [(ngModel)]="po" type="text" formControlName="po">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="billing-info mb-25">
+                                                <label>Phone <span class="required" title="required">*</span></label>
+                                                <input [(ngModel)]="phone" type="text" formControlName="phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="billing-info mb-25">
+                                                <label>Email Address <span class="required"
+                                                        title="required">*</span></label>
+                                                <input [(ngModel)]="email" type="text" formControlName="email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="additional-info-wrap">
+                                        <h6 class="mb-10">Additional information</h6>
+                                        <label>Order notes (optional)</label>
+                                        <textarea [(ngModel)]="note" formControlName="note"
+                                            placeholder="Notes about your order, e.g. special notes for delivery. "
+                                            name="message"></textarea>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="your-order-wrappwer tablet-mt__60 small-mt__60">
+                                    <h6 class="mb-20">Your order</h6>
+                                    <div class="your-order-area">
+                                        <div class="your-order-wrap gray-bg-4">
+                                            <div class="your-order-info-wrap">
+                                                <div class="your-order-info">
+                                                    <ul>
+                                                        <li>Product <span>Total</span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="your-order-middle">
+                                                    <ul>
+                                                        <li *ngFor="let c of cart; let i = index">{{ c[0].name }} X {{
+                                                            c[0].qty }} <span>$ {{ c[0].qty*c[0].price }} </span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="your-order-info order-subtotal">
+                                                    <ul>
+                                                        <li><strong>Subtotal</strong> <span>$ {{ totalHT }} </span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="your-order-info order-total">
+                                                    <ul>
+                                                        <li><strong>Total</strong> <span>$ {{ totalHT }} </span></li>
+                                                    </ul>
+                                                </div>
+
+                                                
+                                            </div>
+
+                                        </div>
+
+
+                                        <ngx-paypal *ngIf="paypalButton && !checkForm.invalid" [config]="payPalConfig"></ngx-paypal>
+
+
+                                    </div>
+                                    <div class="payment-method">
+
+                                        <p class="mt-30">Vos données personnelles seront utilisées pour traiter votre
+                                            commande, vous aider à naviguer sur ce site web et à d'autres fins décrites
+                                            dans notre <a routerLink="privacy-policy" style="color: rgb(8, 143, 204);cursor: pointer;">
+                                                politique de confidentialité.</a>.</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- checkout end -->
+    </div>
+    <!--====================  footer area ====================-->
+    <app-footer2></app-footer2>
+    <!--====================  End of footer area  ====================-->
+
+
+</div>
+
+
+<!--====================  mobile menu overlay ====================-->
+<app-menu></app-menu>
+<!--====================  End of mobile menu overlay  ====================-->
+
+
+
+<!--  offcanvas Minicart Start -->
+<app-mini-cart></app-mini-cart>
+<!--  offcanvas Minicart End -->
+
+
+<!--====================  search overlay ====================-->
+<app-scroll-to-top></app-scroll-to-top>
+

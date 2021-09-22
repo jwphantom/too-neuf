@@ -1,5 +1,7 @@
 <app-header2 [cart]="cart.length"></app-header2>
+<app-cookies></app-cookies>
 
+<div id="flash-empty-cart"><i class="fas fa-shopping-cart"></i> Panier Vide</div>
 
 
 <!-- breadcrumb-area start -->
@@ -31,114 +33,110 @@
 
     <div class="site-wrapper-reveal border-bottom">
 
-    <!-- cart start -->
-    <div class="cart-main-area  section-space--ptb_90">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <form action="#">
-                        <div class="table-content table-responsive cart-table-content header-color-gray">
-                            <table>
-                                <thead>
-                                    <tr class="bg-gray">
-                                        <th></th>
-                                        <th></th>
-                                        <th class="product-name">Produit</th>
-                                        <th> Couleur</th>
-                                        <th> Taille</th>
+        <!-- cart start -->
+        <div class="cart-main-area  section-space--ptb_90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="#">
+                            <div class="table-content table-responsive cart-table-content header-color-gray">
+                                <table>
+                                    <thead>
+                                        <tr class="bg-gray">
+                                            <th></th>
+                                            <th></th>
+                                            <th class="product-name">Produit</th>
+                                            <th> Couleur</th>
+                                            <th> Taille</th>
 
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th *ngIf="cart.length > 0"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let c of cart; let i = index">
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th *ngIf="cart.length > 0"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let c of cart; let i = index">
 
-                                        <td></td>
-                                        <td class="product-img">
-                                            <a href="#"><img style="width: 76px; height: 76px;" src="assets/images/product/{{ c[0].short_name }}-{{ c[0].color }}.png" alt=""></a>
-                                        </td>
-                                        <td class="product-name"><a href="#">{{ c[0].name }}</a></td>
+                                            <td></td>
+                                            <td class="product-img">
+                                                <a href="#"><img style="width: 76px; height: 76px;"
+                                                        src="assets/images/product/{{ c[0].short_name }}-{{ c[0].color }}.png"
+                                                        alt=""></a>
+                                            </td>
+                                            <td class="product-name"><a href="#">{{ c[0].name }}</a></td>
 
-                                        <td><span>{{ c[0].color }}</span></td>
+                                            <td><span>{{ c[0].color }}</span></td>
 
-                                        <td ><span>{{ c[0].size }}</span></td>
+                                            <td><span>{{ c[0].size }}</span></td>
 
+                                            <td><span>{{ c[0].qty }}</span></td>
 
-                                        <td class="cart-quality">
-                                            <div class="quickview-quality quality-height-dec2">
-                                                <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                        value="{{ c[0].qty }}">
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="price-total">
-                                            <span class="amount">$ {{ c[0].qty*c[0].price }}</span>
-                                        </td>
-                                        <td *ngIf="cart.length > 0" class="product-remove">
-                                            <a (click)="remove(c,i)"><i class="icon-cross2"></i></a>
-                                        </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                    <div class="shoping-update-area row">
-                        <div class="continue-shopping-butotn col-6 mt-30">
-                            <a href="#" class="btn btn--lg btn--black"><i class="icon-arrow-left"></i> Continue Shopping
-                            </a>
-                        </div>
-                        <div class="update-cart-button col-6 text-right mt-30">
-                            <a href="#" class="btn btn--lg btn--border_1">Update cart</a>
-                        </div>
-                    </div>
-                    <div class="cart-buttom-area">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="discount-code section-space--mt_60">
-                                    <h6 class="mb-30">Coupon Discount</h6>
-                                    <p>Enter your coupon code if you have one.</p>
-                                    <input type="text" name="name" placeholder="Coupon code">
-                                    <button class="coupon-btn btn btn--lg btn--border_1" type="submit">Apply
-                                        coupon</button>
-                                </div>
+                                            <td class="price-total">
+                                                <span class="amount">$ {{ c[0].qty*c[0].price }}</span>
+                                            </td>
+                                            <td *ngIf="cart.length > 0" class="product-remove">
+                                                <a (click)="remove(c,i)"><i class="icon-cross2"></i></a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="cart_totals section-space--mt_60 ml-md-auto">
-                                    <div class="grand-total-wrap">
-                                        <div class="grand-total-content">
-                                            <ul>
-                                                <li>Subtotal <span> $87.00</span></li>
-                                                <li>Total <span>$87.00</span> </li>
-                                            </ul>
+                        </form>
+                        <div class="shoping-update-area row">
+                            <div class="continue-shopping-butotn col-6 mt-30">
+                                <a href="#" class="btn btn--lg btn--black"><i class="icon-arrow-left"></i> Continue
+                                    Shopping
+                                </a>
+                            </div>
+                            <div class="update-cart-button col-6 text-right mt-30">
+                                <a (click)="storeCart()" class="btn btn--lg btn--border_1">Update cart</a>
+                            </div>
+                        </div>
+                        <div class="cart-buttom-area">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <!-- <div class="discount-code section-space--mt_60">
+                                        <h6 class="mb-30">Coupon Discount</h6>
+                                        <p>Enter your coupon code if you have one.</p>
+                                        <input type="text" name="name" placeholder="Coupon code">
+                                        <button class="coupon-btn btn btn--lg btn--border_1" type="submit">Apply
+                                            coupon</button>
+                                    </div> -->
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="cart_totals section-space--mt_60 ml-md-auto">
+                                        <div class="grand-total-wrap">
+                                            <div class="grand-total-content">
+                                                <ul>
+                                                    <li>Subtotal <span> ${{ totalHT }}</span></li>
+                                                    <li>Total <span>${{ totalHT }}</span> </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="grand-btn mt-30">
+                                            <a routerLink="/checkout" class="btn--black btn--full text-center btn--lg">Proceed to
+                                                checkout</a>
                                         </div>
                                     </div>
-                                    <div class="grand-btn mt-30">
-                                        <a href="#" class="btn--black btn--full text-center btn--lg">Proceed to
-                                            checkout</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- cart end -->
+
     </div>
-    <!-- cart end -->
-
-</div>
 
 
-<!-- Product Area End -->
+    <!-- Product Area End -->
 
-<!--====================  footer area ====================-->
-<app-footer2></app-footer2>
-<!--====================  End of footer area  ====================-->
+    <!--====================  footer area ====================-->
+    <app-footer2></app-footer2>
+    <!--====================  End of footer area  ====================-->
 
 
 </div>

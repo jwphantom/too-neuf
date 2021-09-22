@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class ContactService {
 
-    private baseUrl = 'http://localhost:3001/api';
+    private baseUrl = 'https://server-too-neuf.herokuapp.com/api';
 
 
     constructor(private http: HttpClient,

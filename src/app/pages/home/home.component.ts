@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
+import { CookiesComponent } from '../modal/cookies/cookies.component';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,9 @@ export class HomeComponent implements OnInit {
 
   cart: Array<string> = [];
 
-  constructor(private title: Title) { }
+  constructor(private title: Title,
+    public dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
 
@@ -18,7 +22,9 @@ export class HomeComponent implements OnInit {
 
     this.storeCart();
 
+    this.dataBackgroundImage();
 
+    this.loadToolbar();
     this.loadScript('../assets/js/vendor/modernizr-2.8.3.min.js');
     this.loadScript('../assets/js/vendor/jquery-3.5.1.min.js');
     this.loadScript('../assets/js/vendor/jquery-migrate-3.3.0.min.js');
@@ -37,7 +43,7 @@ export class HomeComponent implements OnInit {
 
 
   public loadScript(url: string) {
-    const body = <HTMLDivElement> document.body;
+    const body = <HTMLDivElement>document.body;
     const script = document.createElement('script');
     script.innerHTML = '';
     script.src = url;
@@ -46,7 +52,7 @@ export class HomeComponent implements OnInit {
     body.appendChild(script);
   }
 
-  storeCart(){
+  storeCart() {
 
     let cartLocal = localStorage.getItem('cart');
     if (cartLocal) {
@@ -57,6 +63,51 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  dataBackgroundImage() {
+    var bgSelector = $(".bg-img");
+    bgSelector.each(function (index, elem) {
+      var element = $(elem),
+        bgSource = element.data('bg');
+      element.css('background', 'url(' + bgSource + ')');
+    });
+  }
+
+
+  ModalCookies() {
+    const dialogRef = this.dialog.open(CookiesComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  loadToolbar() {
+
+    /*----------------------------------------*/
+    /*  Toolbar Button
+      /*----------------------------------------*/
+    var $overlay = $('.global-overlay');
+    $('.toolbar-btn').on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $this = $(this);
+      var target = $this.attr('href');
+      var prevTarget = $this.parent().siblings().children('.toolbar-btn').attr('href');
+      $(target).toggleClass('open');
+      $(prevTarget).removeClass('open');
+      $($overlay).addClass('overlay-open');
+    });/*----------------------------------------*/
+    /*  Close Button Actions
+      /*----------------------------------------*/
+    $('.btn-close, .btn-close-2, body .global-overlay').on('click', function (e) {
+      var dom = $('body').children();
+      e.preventDefault();
+      var $this = $(this);
+      $this.parents('.open').removeClass('open');
+      dom.find('.global-overlay').removeClass('overlay-open');
+    });
+
+  }
 
 
 }

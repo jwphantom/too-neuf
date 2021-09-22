@@ -1,10 +1,11 @@
 <app-header2 [cart]="cart.length"></app-header2>
+<app-cookies></app-cookies>
 
 
 <div id="main-wrapper ">
 
     <div class="content_p">
-        <div class="container">·
+        <div class="container">
             <div class="row justify-content-center ">
 
                 <div class="col-md-1 col-xs-8">
@@ -33,9 +34,9 @@
 
                     <div class="text_border" *ngIf="short_name == 'tshirt' || short_name == 'bd'">
 
-                        <div *ngIf="active_t_p">
+                        <div *ngIf="active_t_p" cdkDrop>
                             <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index"
-                                class="text_perso text_perso_{{i}}" cdkDragBoundary=".text_border" cdkDrag
+                                class="text_perso text_perso_{{i}}" cdkDragBoundary=".text_border" cdkDrag (cdkDragEnded)="dragEnd($event)"
                                 [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
                             'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
 
@@ -55,9 +56,9 @@
 
                     <div class="text_border_cup" *ngIf="short_name == 'cup'">
 
-                        <div *ngIf="active_t_p">
+                        <div *ngIf="active_t_p" cdkDrop>
                             <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso {{i}}"
-                                cdkDragBoundary=".text_border_cup" cdkDrag
+                                cdkDragBoundary=".text_border_cup" cdkDrag (cdkDragEnded)="dragEnd($event)"
                                 [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
                             'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
 
@@ -77,9 +78,9 @@
 
                     <div class="text_border_cap" *ngIf="short_name == 'cap'">
 
-                        <div *ngIf="active_t_p">
+                        <div *ngIf="active_t_p" cdkDrop>
                             <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index" class="text_perso {{i}}"
-                                cdkDragBoundary=".text_border_cap" cdkDrag
+                                cdkDragBoundary=".text_border_cap" cdkDrag (cdkDragEnded)="dragEnd($event)"
                                 [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
                             'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
 

@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { io } from "socket.io-client";
+
 
 @Component({
   selector: 'app-mini-cart',
@@ -8,18 +11,29 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MiniCartComponent implements OnInit {
 
   cart: Array<string> = [];
-  @Input() totalHT : number;
+  @Input() totalHT: string;
+
+  socket = io('https://server-too-neuf.herokuapp.com');
 
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
-    this.storeCart();
-    this.calculatebill()
+    this.socket.emit('cart');
+
+    this.socket.on('refresh-cart', () => {
+      this.storeCart();
+      this.calculatebill()
+    });
+
+
+    // this.storeCart();
+    // this.calculatebill()
   }
 
-  storeCart(){
+  storeCart() {
 
     let cartLocal = localStorage.getItem('cart');
     if (cartLocal) {
@@ -34,7 +48,9 @@ export class MiniCartComponent implements OnInit {
     this.cart.splice(i, 1);
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.storeCart();
-    this.calculatebill()
+    this.calculatebill();
+    this.socket.emit('cart');
+
 
 
   }
@@ -44,7 +60,15 @@ export class MiniCartComponent implements OnInit {
     for (let i = 0; i < this.cart.length; i++) {
       montant = montant + this.cart[i][0]['price'] * this.cart[i][0]['qty'];
     }
-    this.totalHT = montant;
+    this.totalHT = (Math.round(montant * 100) / 100).toFixed(2);
+  }
+
+
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 
 }

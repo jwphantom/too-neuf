@@ -1,0 +1,15 @@
+.card button {
+    color: rgb(8, 143, 204);
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+@media screen and (max-width: 580px) {
+    .card button {
+        font-size: 12px;
+    }
+}

@@ -8,9 +8,9 @@
 	var $html = $('html');
 	var $body = $('body');  
 
-    windows.on('load', function () {
-		dataBackgroundImage();
-	});
+    // windows.on('load', function () {
+	// 	dataBackgroundImage();
+	// });
 
 
     /*=============================================
@@ -69,29 +69,29 @@
 
 
 
-    /*----------------------------------------*/
-	/*  Toolbar Button
-    /*----------------------------------------*/
-	var $overlay = $('.global-overlay');
-	$('.toolbar-btn').on('click', function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		var $this = $(this);
-		var target = $this.attr('href');
-		var prevTarget = $this.parent().siblings().children('.toolbar-btn').attr('href');
-		$(target).toggleClass('open');
-		$(prevTarget).removeClass('open');
-		$($overlay).addClass('overlay-open');
-	});/*----------------------------------------*/
-	/*  Close Button Actions
-    /*----------------------------------------*/
-	$('.btn-close, .btn-close-2, body .global-overlay').on('click', function (e) {
-		var dom = $('body').children();
-		e.preventDefault();
-		var $this = $(this);
-		$this.parents('.open').removeClass('open');
-		dom.find('.global-overlay').removeClass('overlay-open');
-	});
+    // /*----------------------------------------*/
+	// /*  Toolbar Button
+    // /*----------------------------------------*/
+	// var $overlay = $('.global-overlay');
+	// $('.toolbar-btn').on('click', function (e) {
+	// 	e.preventDefault();
+	// 	e.stopPropagation();
+	// 	var $this = $(this);
+	// 	var target = $this.attr('href');
+	// 	var prevTarget = $this.parent().siblings().children('.toolbar-btn').attr('href');
+	// 	$(target).toggleClass('open');
+	// 	$(prevTarget).removeClass('open');
+	// 	$($overlay).addClass('overlay-open');
+	// });/*----------------------------------------*/
+	// /*  Close Button Actions
+    // /*----------------------------------------*/
+	// $('.btn-close, .btn-close-2, body .global-overlay').on('click', function (e) {
+	// 	var dom = $('body').children();
+	// 	e.preventDefault();
+	// 	var $this = $(this);
+	// 	$this.parents('.open').removeClass('open');
+	// 	dom.find('.global-overlay').removeClass('overlay-open');
+	// });
 
 
 
@@ -150,21 +150,21 @@
     $offCanvasNavSubMenu.slideUp();
     
     /*Category Sub Menu Toggle*/
-    $offCanvasNav.on('click', 'li a, li .menu-expand', function(e) {
-        var $this = $(this);
-        if ( ($this.parent().attr('class').match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/)) && ($this.attr('href') === '#' || $this.hasClass('menu-expand')) ) {
-            e.preventDefault();
-            if ($this.siblings('ul:visible').length){
-                $this.parent('li').removeClass('active');
-                $this.siblings('ul').slideUp();
-            } else {
-                $this.parent('li').addClass('active');
-                $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
-                $this.closest('li').siblings('li').find('ul:visible').slideUp();
-                $this.siblings('ul').slideDown();
-            }
-        }
-    });
+    // $offCanvasNav.on('click', 'li a, li .menu-expand', function(e) {
+    //     var $this = $(this);
+    //     if ( ($this.parent().attr('class').match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/)) && ($this.attr('href') === '#' || $this.hasClass('menu-expand')) ) {
+    //         e.preventDefault();
+    //         if ($this.siblings('ul:visible').length){
+    //             $this.parent('li').removeClass('active');
+    //             $this.siblings('ul').slideUp();
+    //         } else {
+    //             $this.parent('li').addClass('active');
+    //             $this.closest('li').siblings('li').removeClass('active').find('li').removeClass('active');
+    //             $this.closest('li').siblings('li').find('ul:visible').slideUp();
+    //             $this.siblings('ul').slideDown();
+    //         }
+    //     }
+    // });
     /*----------------------------------------*/
 	/*  Offcanvas Inner Nav
     /*----------------------------------------*/
@@ -242,14 +242,14 @@
     /*===================================
     =        Background image           =
     ====================================-*/
-    function dataBackgroundImage() {
-        var bgSelector = $(".bg-img");
-        bgSelector.each(function (index, elem) {
-            var element = $(elem),
-                bgSource = element.data('bg');
-            element.css('background', 'url(' + bgSource + ')');
-        });
-    }
+    // function dataBackgroundImage() {
+    //     var bgSelector = $(".bg-img");
+    //     bgSelector.each(function (index, elem) {
+    //         var element = $(elem),
+    //             bgSource = element.data('bg');
+    //         element.css('background', 'url(' + bgSource + ')');
+    //     });
+    // }
 
     /*--------------------------------
         Hero Slider one
