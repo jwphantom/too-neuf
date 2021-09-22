@@ -82,6 +82,7 @@ export class CartComponent implements OnInit {
   remove(c, i) {
     this.cart.splice(i, 1);
     localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.calculatebill();
   }
 
   calculatebill() {

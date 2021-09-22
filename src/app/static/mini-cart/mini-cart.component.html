@@ -9,7 +9,7 @@
                 <li class="minicart-product" *ngFor="let c of cart; let i = index">
                     <a class="product-item_remove" (click)="remove(i)"><i class="icon-cross2"></i></a>
                     <a class="product-item_img">
-                        <img class="img-fluid" style="width: 76px; height: 76px;" src="assets/images/product/{{ c[0].short_name }}-{{ c[0].color }}.png"  alt="Product Image">
+                        <img class="img-fluid" style="width: 76px; height: 76px;" src="assets/images/product/{{ c[0].short_name }}-{{ c[0].color }}.png"  alt="{{ c[0].short_name }}-{{ c[0].color }}">
                     </a>
                     <div class="product-item_content">
                         <a class="product-item_title" href="product-details.html">{{ c[0].name }}</a>

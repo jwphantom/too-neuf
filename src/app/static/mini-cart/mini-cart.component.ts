@@ -25,7 +25,8 @@ export class MiniCartComponent implements OnInit {
 
     this.socket.on('refresh-cart', () => {
       this.storeCart();
-      this.calculatebill()
+      this.calculatebill();
+
     });
 
 

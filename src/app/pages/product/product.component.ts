@@ -125,8 +125,6 @@ export class ProductComponent implements OnInit {
 
 
     this.store_product();
-
-
     this.update_produit();
 
     this.title.setTitle("TOONEUF - Produits -" + this.name);
@@ -156,7 +154,7 @@ export class ProductComponent implements OnInit {
     this.name = this.produitService.getProduitById(+id).name;
     this.src_i_p = this.produitService.getProduitById(+id).src_index;
     this.size_p = this.produitService.getProduitById(+id).size;
-
+    this.color = this.produitService.getProduitById(+id).variantes[0].couleur;
     this.price = this.produitService.getProduitById(+id).price;
     this.short_name = this.produitService.getProduitById(+id).short_name;
     this.variantes = this.produitService.getProduitById(+id).variantes;
@@ -289,8 +287,10 @@ export class ProductComponent implements OnInit {
 
   addCart(produit) {
 
+    this.update_produit();
     this.storeCart();
 
+    console.log(produit);
 
     let iCart;
     let index;
@@ -344,7 +344,7 @@ export class ProductComponent implements OnInit {
       //   this.cart.push(produit);
       //   localStorage.setItem('cart', JSON.stringify(this.cart));
 
-      // }
+      //}
 
 
 
@@ -355,8 +355,12 @@ export class ProductComponent implements OnInit {
 
   update_produit() {
 
-    const id = this.route.snapshot.params['id'];
+    // this.store_product();
 
+    console.log(this.src_i_p);
+
+
+    const id = this.route.snapshot.params['id'];
     if (this.is_size) {
       this.produit = [
         {
@@ -383,7 +387,9 @@ export class ProductComponent implements OnInit {
           price: this.price,
           qty: this.qty,
           text: this.t_perso,
-          src_img: this.src_i_m
+          src_img: this.src_i_m,
+          color: this.color,
+
 
         }
       ];
@@ -688,7 +694,7 @@ export class ProductComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.store_product();
-      console.log(`Dialog result: ${result}`);
+      this.update_produit();
     });
   }
 
