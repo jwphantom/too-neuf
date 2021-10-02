@@ -1,15 +1,15 @@
-.single-hero-slider-7 .one h4 {
-    color: white;
-    font-weight: 800;
-}
+// .single-hero-slider-7 .one h4 {
+//     color: white;
+//     font-weight: 800;
+// }
 
-.single-hero-slider-7 h4 {
-    font-weight: 800;
-}
+// .single-hero-slider-7 h4 {
+//     font-weight: 800;
+// }
 
-.single-hero-slider-one {
-    background: rgb(8, 143, 204);
-}
+// .single-hero-slider-one {
+//     background: rgb(8, 143, 204);
+// }
 
 .hero-text h1 {
     color: white;
@@ -41,6 +41,9 @@
     text-transform: uppercase;
     color: white;
 }
+
+
+
 
 .section-btn-design {
     margin: 40px;
@@ -168,4 +171,57 @@
   
 //   }
 
+.overlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  opacity: .7;
+  transition: .5s ease;
+  background-color: #e9e9e9;
+  z-index: 3;
+}
 
+
+.banner_car h1{
+    color: white;
+    font-size: 28px;
+    font-weight: 500;
+}
+.banner_car span{
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+.banner_car{
+padding: 40px;
+background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0%;
+  left: 25%;
+  height: 250px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100;
+}
+
+@media screen and (max-width: 524px) {
+    .banner_car{
+        padding: 40px;
+        background-color: rgba(0, 0, 0, 0.6);
+          position: absolute;
+          top: 0%;
+          left: 50%;
+          height: 250px;
+          -webkit-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          text-align: center;
+          z-index: 100;
+        }
+}

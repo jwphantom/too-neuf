@@ -1,4 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject } from '@angular/core';
+import { io } from "socket.io-client";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -7,12 +12,34 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() cart : number = 0;
+  cart: Array<string> = [];
+
+  private socket = io('https://server-too-neuf.herokuapp.com');
 
 
-  constructor() { }
+  constructor(private router: Router,
+    @Inject(DOCUMENT) private document: Document
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+    this.socket.emit('cart');
+
+    this.socket.on('refresh-cart', () => {
+      this.storeCart();
+    });
+
+  }
+
+  storeCart() {
+
+    let cartLocal = localStorage.getItem('cart');
+    if (cartLocal) {
+      this.cart = JSON.parse(localStorage.getItem('cart'));
+    } else {
+      this.cart = [];
+
+    }
   }
 
 }
