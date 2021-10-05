@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Footer2Component implements OnInit {
 
-  constructor() { }
+  email: String;
 
-  ngOnInit(): void {
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+  }
+
+  submitNews(){
+    console.log(this.email);
+
+    let email = {'email': this.email}
+
+    this.http
+      .post('http://localhost:3001/api/newsletter', email)
+      .subscribe(
+        (res) => {
+          $('#popup-newsletter').show();
+
+          setTimeout(function () {
+            $('#popup-newsletter').hide();
+          }, 3000);
+
+
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+
+
+
   }
 
 }
