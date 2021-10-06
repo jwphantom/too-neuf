@@ -40,6 +40,9 @@
 /*=============================================
 =             01. Default Css                 =
 =============================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Simonetta&display=swap');
+
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Mr+De+Haviland&family=Prata&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
@@ -56,7 +59,7 @@ body {
   font-style: normal;
   font-weight: 400;
   visibility: visible;
-  font-family: "Roboto", sans-serif;
+  font-family: "Simonetta", cursive;
   color: #000000;
   position: relative;
   background-color: #ffffff;
