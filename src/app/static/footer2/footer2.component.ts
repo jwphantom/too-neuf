@@ -17,10 +17,10 @@ export class Footer2Component implements OnInit {
 
   }
 
-  submitNews(){
+  submitNews() {
     console.log(this.email);
 
-    let email = {'email': this.email}
+    let email = { 'email': this.email }
 
     this.http
       .post('https://server-too-neuf.herokuapp.com/api/newsletter', email)
@@ -32,6 +32,9 @@ export class Footer2Component implements OnInit {
             $('#popup-newsletter-success').hide();
           }, 3000);
 
+          this.email = '';
+
+
 
         },
         (error) => {
@@ -40,6 +43,8 @@ export class Footer2Component implements OnInit {
           setTimeout(function () {
             $('#popup-newsletter-info').hide();
           }, 3000);
+          this.email = '';
+
           console.log('Erreur ! : ' + error);
         }
       );

@@ -11,6 +11,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactComponent implements OnInit {
 
+   //private baseUrl = 'https://server-too-neuf.herokuapp.com/api';
+   private baseUrl = 'http://localhost:3001/api';
+
+
   contactForm: FormGroup;
 
   load: Boolean = false;
@@ -54,7 +58,7 @@ export class ContactComponent implements OnInit {
   contactFormulaire() {
     this.contactForm = this.formBuiler.group({
       name: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       objet: ['', Validators.required],
       message: ['', Validators.required],
     })
@@ -66,13 +70,13 @@ export class ContactComponent implements OnInit {
     this.load = true;
 
     this.http
-      .post('https://server-too-neuf.herokuapp.com/api/send-message', formValue)
+      .post(this.baseUrl + '/send_message', formValue)
       .subscribe(
         (res) => {
-          $('#snackbar').show();
+          $('#popup-message-sent').show();
 
           setTimeout(function () {
-            $('#snackbar').hide();
+            $('#popup-message-sent').hide();
           }, 3000);
 
           $(':input', '#contact-form')
@@ -82,16 +86,20 @@ export class ContactComponent implements OnInit {
             .prop('selected', false);
 
             this.load = false;
+            this.contactFormulaire();
 
         },
         (error) => {
           console.log('Erreur ! : ' + error);
+          $('#popup-message-fail').show();
+
+          setTimeout(function () {
+            $('#popup-message-fail').hide();
+          }, 3000);
+          this.load = false;
+
         }
       );
-
-
-
-    //this.contactService.sendEmail(formValue);
 
   }
 
