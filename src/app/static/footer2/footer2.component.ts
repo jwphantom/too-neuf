@@ -14,6 +14,7 @@ export class Footer2Component implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+
   }
 
   submitNews(){
@@ -22,18 +23,23 @@ export class Footer2Component implements OnInit {
     let email = {'email': this.email}
 
     this.http
-      .post('http://localhost:3001/api/newsletter', email)
+      .post('https://server-too-neuf.herokuapp.com/api/newsletter', email)
       .subscribe(
         (res) => {
-          $('#popup-newsletter').show();
+          $('#popup-newsletter-success').show();
 
           setTimeout(function () {
-            $('#popup-newsletter').hide();
+            $('#popup-newsletter-success').hide();
           }, 3000);
 
 
         },
         (error) => {
+          $('#popup-newsletter-info').show();
+
+          setTimeout(function () {
+            $('#popup-newsletter-info').hide();
+          }, 3000);
           console.log('Erreur ! : ' + error);
         }
       );

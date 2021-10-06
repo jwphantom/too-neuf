@@ -66,7 +66,7 @@ export class ShopComponent implements OnInit {
 
   onViewProduct(id : number){
 
-    this.router.navigate(['/shop/product', id]);
+    this.router.navigate(['/create-own', id]);
   }
 
 

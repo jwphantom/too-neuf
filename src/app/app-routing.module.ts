@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path : 'create-own/:id', component: ProductComponent},
   { path: 'cart', component: CartComponent },
+  { path: 'shop', component: ShopComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'contact-us', component: ContactComponent },
   { path: 'support', component: SupportComponent },
