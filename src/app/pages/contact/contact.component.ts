@@ -11,8 +11,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactComponent implements OnInit {
 
-   //private baseUrl = 'https://server-too-neuf.herokuapp.com/api';
-   private baseUrl = 'http://localhost:3001/api';
+   private baseUrl = 'https://server-too-neuf.herokuapp.com/api';
+   //private baseUrl = 'http://localhost:3001/api';
 
 
   contactForm: FormGroup;
