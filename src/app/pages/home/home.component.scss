@@ -54,7 +54,21 @@
     background-color: rgb(8, 143, 204);
     color: white;
     text-transform: uppercase;
+    animation: zoom-in-zoom-out 2s ease-out a;
 }
+
+@keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.2, 1.2);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+
 
 .offer-colection-area .bg {
     background-color: #f2f2f2;

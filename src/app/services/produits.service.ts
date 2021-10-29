@@ -157,6 +157,45 @@ export class ProduitService {
           }
         ]
       
+      },
+      {
+        id: 4,
+        name: 'Tablier',
+        short_name: 'tb',
+        src_index : 'tb-white',
+        price: "25.00",
+        min_price: "25.00",
+        max_price: "35.00",
+        is_size: false,
+        size : ['S','M', 'L', 'XL', '2XL', '3XL' ],
+        variantes: [
+          {
+            couleur: 'white',
+            image: 'tb-white',
+            price: '12',
+          },
+          {
+            couleur: 'black',
+            image: 'tb-black',
+            price: '12',
+          },
+          {
+            couleur: 'red',
+            image: 'tb-red',
+            price: '12',
+          },
+          {
+            couleur: 'blue',
+            image: 'tb-washed_yellow',
+            price: '12',
+          },
+          {
+            couleur: 'green',
+            image: 'tb-green',
+            price: '12',
+          }
+        ]
+      
       }
     
 

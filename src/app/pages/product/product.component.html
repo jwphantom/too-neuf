@@ -54,6 +54,28 @@
 
                     </div>
 
+                    <div class="text_border_tb" *ngIf="short_name == 'tb'">
+
+                        <div *ngIf="active_t_p" cdkDrop>
+                            <p (click)="edit_text(i)" *ngFor="let f of t_perso let i = index"
+                                class="text_perso text_perso_{{i}}" cdkDragBoundary=".text_border_tb" cdkDrag (cdkDragEnded)="dragEnd($event)"
+                                [ngStyle]="{'color': (t_perso[i][0].color === 'black' ) ? 'black' : (t_perso[i][0].color === 'white' ) ? 'white' : (t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'yellow') ? 'yellow' : (t_perso[i][0].color === 'orange') ? 'orange' :(t_perso[i][0].color === 'violet') ? 'violet' :(t_perso[i][0].color === 'BlueViolet') ? 'BlueViolet' :(t_perso[i][0].color === 'Chocolate') ? 'Chocolate' :(t_perso[i][0].color === 'DarkMagenta') ? 'DarkMagenta' :(t_perso[i][0].color === 'gold') ? 'gold' :(t_perso[i][0].color === 'indigo') ? 'indigo' :(t_perso[i][0].color === 'olive') ? 'olive' :(t_perso[i][0].color === 'Pink') ? 'Pink' :(t_perso[i][0].color === 'red') ? 'red' : (t_perso[i][0].color === 'Teal') ? 'Teal': '','font-weight': (t_weight === true ) ? 'bold' : 'normal', 'font-style': (t_perso[i][0].italic) ? 'italic' : 'normal', 'font-weight': (t_perso[i][0].bold) ? 'bold' : 'normal', 'font-size': (t_perso[i][0].size) ? t_perso[i][0].size+'px' : 'normal' ,'text-decoration': (t_perso[i][0].underline) ? 'underline' : 'none',
+                            'font-family': (t_perso[i][0].family === 'Times New Roman') ? 'Times New Roman' : (t_perso[i][0].family === 'Impact') ? 'Impact' : (t_perso[i][0].family === 'Verdana') ? 'Verdana' : (t_perso[i][0].family === 'Trebuchet') ? 'Trebuchet': (t_perso[i][0].family === 'Gill Sans') ? 'Gill Sans': (t_perso[i][0].family === 'Lucida Sans') ? 'Lucida Sans':(t_perso[i][0].family === 'Cambria') ? 'Cambria':(t_perso[i][0].family === 'Georgia') ? 'Georgia':(t_perso[i][0].family === 'Cochin') ? 'Cochin' :''}">
+
+                                {{t_perso[i][0].word}}
+                            </p>
+                        </div>
+
+
+                        <div class="file-upload-content" (click)="edit_image_import()">
+                            <div class="image-title-wrap" cdkDrag>
+                                <img class="file-upload-image" [src]="src_i_m" alt="your image" *ngIf="active_i_p"
+                                    [ngStyle]="{'width': (size_i) ? size_i+'px' : 'normal' }" />
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="text_border_cup" *ngIf="short_name == 'cup'">
 
                         <div *ngIf="active_t_p" cdkDrop>

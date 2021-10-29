@@ -159,6 +159,20 @@ hr {
     margin-left: 135px;
 }
 
+.text_border_tb{
+    width: 120px;
+    height: 150px;
+    max-width: 100%;
+    position: absolute;
+    top: 165px;
+    margin-left: 170px;
+}
+
+.text_border_tb:active {
+    border: dotted rgb(175, 175, 175) 2px;
+    position: absolute;
+}
+
 .text_border_cap:active {
     border: dotted rgb(175, 175, 175) 2px;
     position: absolute;
@@ -207,6 +221,16 @@ hr {
         margin-left: 100px;
     }
 
+    .text_border_tb{
+        width: 95px;
+        height: 140px;
+        max-width: 100%;
+        position: absolute;
+        top: 140px;
+        margin-left: 145px;
+    }
+
+    
     .text_border_cup {
         width: 230px;
         height: 170px;
@@ -250,6 +274,15 @@ hr {
         position: absolute;
         top: 80px;
         margin-left: 100px;
+    }
+
+    .text_border_tb{
+        width: 88px;
+        height: 130px;
+        max-width: 100%;
+        position: absolute;
+        top: 125px;
+        margin-left: 130px;
     }
 
     .text_border_cup {
