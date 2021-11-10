@@ -42,9 +42,6 @@
     color: white;
 }
 
-
-
-
 .section-btn-design {
     margin: 40px;
     text-align: center;
@@ -54,21 +51,20 @@
     background-color: rgb(8, 143, 204);
     color: white;
     text-transform: uppercase;
-    animation: zoom-in-zoom-out 2s ease-out a;
+    animation: zoom-in-zoom-out 1s ease infinite;
 }
 
 @keyframes zoom-in-zoom-out {
     0% {
-      transform: scale(1, 1);
+        transform: scale(1, 1);
     }
     50% {
-      transform: scale(1.2, 1.2);
+        transform: scale(1.1, 1.1);
     }
     100% {
-      transform: scale(1, 1);
+        transform: scale(1, 1);
     }
-  }
-
+}
 
 .offer-colection-area .bg {
     background-color: #f2f2f2;
@@ -83,7 +79,7 @@
     color: rgb(0, 0, 0);
 }
 
-.trust-section{
+.trust-section {
     padding: 30px;
     background-color: blanchedalmond;
 }
@@ -122,7 +118,18 @@
 
 .about .about-img img {
     width: 80%;
+    animation-name            : displaceContent;
+    animation-duration        : 1s;
+    animation-delay           : 4s;
+    animation-iteration-count : 1;
+    animation-fill-mode       : forwards;
 }
+
+@keyframes displaceContent {
+    from { transform : translateX(0em) }
+    to   { transform : translateX(5em) } /* slide down to make room for advertisements */
+}
+
 
 .section-header {
     position: relative;
@@ -160,23 +167,20 @@
     font-weight: 700;
 }
 
-.about-us-content_6 h2{
+.about-us-content_6 h2 {
     font-size: 27px;
     font-weight: 900;
-
 }
 
-.t_etape_perso{
+.t_etape_perso {
     text-align: center;
     padding-top: 20px;
-    
 }
 
-.t_etape_perso h2{
+.t_etape_perso h2 {
     font-size: 35px;
-  font-family: 'Prompt', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 700;
-  
+    font-family: "Prompt", "Arial Narrow", Arial, sans-serif;
+    font-weight: 700;
 }
 
 @media (max-width: 767.98px) {
@@ -185,72 +189,67 @@
     }
 }
 
-
 // .container-fluid .slide-one{
 //     background: url('assets/images/hero/home-4.jpeg')
-  
+
 //   }
 
 .overlay {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  
-  opacity: .7;
-  transition: .5s ease;
-  background-color: #e9e9e9;
-  z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    opacity: 0.7;
+    transition: 0.5s ease;
+    background-color: #e9e9e9;
+    z-index: 3;
 }
 
-
-.banner_car h1{
+.banner_car h1 {
     color: white;
     font-size: 28px;
     font-weight: 500;
 }
-.banner_car span{
+.banner_car span {
     color: white;
     font-size: 12px;
     font-weight: 500;
 }
 
-
-.banner_car{
-padding: 40px;
-background-color: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  top: 0%;
-  left: 25%;
-  height: 250px;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 100;
+.banner_car {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0%;
+    left: 25%;
+    height: 250px;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
 }
 
 @media screen and (max-width: 524px) {
-    .banner_car{
+    .banner_car {
         padding: 40px;
         background-color: rgba(0, 0, 0, 0.6);
-          position: absolute;
-          top: 0%;
-          left: 50%;
-          height: 250px;
-          -webkit-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-          text-align: center;
-          z-index: 100;
-        }
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        height: 250px;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 100;
+    }
 }
 
-
-.single-support-item img{
+.single-support-item img {
     width: 50px;
 }
-
 
 #popup-newsletter-success {
     display: none; /* Hidden by default. Visible on click */
@@ -276,7 +275,6 @@ background-color: rgba(0, 0, 0, 0.6);
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-
 #popup-newsletter-info {
     display: none; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
@@ -300,7 +298,6 @@ background-color: rgba(0, 0, 0, 0.6);
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
-
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
