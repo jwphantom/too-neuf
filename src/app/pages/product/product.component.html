@@ -145,7 +145,7 @@
 
                             <div class="product-size-wrapper mt-20" *ngIf="is_size">
                                 <div class="tab-content d-flex">
-                                    <label class="mr-2">Size</label>
+                                    <label class="mr-2">Taille</label>
                                     <div class="tab-pane fade show active" id="tab_list_l">
                                         {{size}}
                                     </div>
@@ -176,7 +176,7 @@
 
                             <div class="product-color-wrapper mt-20">
                                 <div class="tab-content d-flex">
-                                    <label class="mr-2">Color </label>
+                                    <label class="mr-2">Couleur </label>
                                     <div class="tab-pane fade active" id="tab_list_white">
                                         {{color}}
                                     </div>
@@ -210,9 +210,8 @@
 
                                 <div class="quickview-button">
                                     <div class="quickview-cart button">
-                                        <a (click)="addCart(produit)"
-                                            class="btn--lg btn--black font-weight--reguler text-white">Add to
-                                            cart</a>
+                                        <a (click)="addCart(produit)" style="font-size: 13px;"
+                                            class="btn--lg btn--black font-weight--reguler text-white">Ajouter au Panier</a>
                                     </div>
 
                                 </div>

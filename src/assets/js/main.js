@@ -277,8 +277,8 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: false,
-        prevArrow:'<span class="arrow-prv">Prev</span>',
-        nextArrow:'<span class="arrow-next">Next</span>',
+        prevArrow:'<span class="arrow-prv">Prec</span>',
+        nextArrow:'<span class="arrow-next">Suiv</span>',
         responsive: [
             {
                 breakpoint: 1199,
