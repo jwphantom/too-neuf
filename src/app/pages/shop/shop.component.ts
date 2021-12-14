@@ -25,6 +25,7 @@ export class ShopComponent implements OnInit {
   ngOnInit() {
 
     this.storeCart();
+    this.loadToolbar();
 
     this.title.setTitle("TOO NEUF - Boutique");
 
@@ -79,6 +80,33 @@ export class ShopComponent implements OnInit {
       this.cart = [];
 
     }
+  }
+
+  loadToolbar() {
+
+    /*----------------------------------------*/
+    /*  Toolbar Button
+      /*----------------------------------------*/
+    var $overlay = $('.global-overlay');
+    $('.toolbar-btn').on('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var $this = $(this);
+      var target = $this.attr('href');
+      var prevTarget = $this.parent().siblings().children('.toolbar-btn').attr('href');
+      $(target).toggleClass('open');
+      $(prevTarget).removeClass('open');
+      $($overlay).addClass('overlay-open');
+    });/*----------------------------------------*/
+    /*  Close Button Actions
+      /*----------------------------------------*/
+    $('.btn-close, .btn-close-2, body .global-overlay').on('click', function (e) {
+      var dom = $('body').children();
+      e.preventDefault();
+      var $this = $(this);
+      $this.parents('.open').removeClass('open');
+      dom.find('.global-overlay').removeClass('overlay-open');
+    });
   }
 
 }

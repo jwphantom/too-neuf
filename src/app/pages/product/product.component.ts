@@ -32,7 +32,6 @@ export class ProductComponent implements OnInit {
   private socket = io('https://server-too-neuf.herokuapp.com');
 
 
-
   selectedFile: ImageSnippet;
 
   load: Boolean = false;
@@ -121,7 +120,7 @@ export class ProductComponent implements OnInit {
 
     this.storeCart();
 
-    this.color = "white";
+    this.color = "blanc";
 
 
     this.store_product();

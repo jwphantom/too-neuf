@@ -3,3 +3,154 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Prompt, "Helvetica Neue", sans-serif; }
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+
+.dot-blanc {
+    height: 30px;
+    width: 30px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-noir {
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-rouge {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-turquoise {
+    height: 30px;
+    width: 30px;
+    background-color: #1688ad;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-fuchsia {
+    height: 30px;
+    width: 30px;
+    background-color: #EE357D;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-navy {
+    height: 30px;
+    width: 30px;
+    background-color: #272a41;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-bleu {
+    height: 30px;
+    width: 30px;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-gris {
+    height: 30px;
+    width: 30px;
+  background-color: #808080;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot-jaune_délavé
+  {
+    height: 30px;
+    width: 30px;
+  background-color: #F2EBA8;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  
+  
+  /* text personalisé */
+  
+  .text-personalize{
+    position:absolute;
+    top:100px; 
+    z-index:2;
+    font-size:18px;
+    width: 100%;
+    margin-left: -10px;
+  
+  
+  }
+  
+  .text-personalize-cup{
+    position:absolute;
+    top:240px; 
+    z-index:2;
+    font-size:18px;
+    width: 100%;
+    margin-left: -10px;
+  
+  }
+  
+  
+  
+  @media screen and (max-width: 580px){
+    .text-personalize{
+      position:absolute;
+      top:140px; 
+      z-index:2;
+      font-size:18px;
+      width: 100%;
+      white-space: pre-line;
+    
+    }
+  
+    .text-personalize-cup{
+      position:absolute;
+      top:170px; 
+      z-index:2;
+      font-size:18px;
+      width: 100%;
+      white-space: pre-line;
+    
+    }
+  }
+  
+  
+  .button_style{
+    font-size: 25px;
+    font-weight: bold;  
+    padding-left : 10px;
+    padding-right : 10px;
+  }
+  
+  .button_style_click{
+    font-size: 25px;
+    font-weight: bold;  
+    background-color: gainsboro;
+    padding-left : 10px;
+    padding-right : 10px;
+  }
+  
+  .italic{
+    font-weight: 300;
+    font-style: italic;
+    font-family: serif;
+  }
+  
+  .deco{
+    font-weight: 300;
+    text-decoration: underline;
+  }

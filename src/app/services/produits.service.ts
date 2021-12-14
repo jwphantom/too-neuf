@@ -21,27 +21,27 @@ export class ProduitService {
       is_size: false,
       variantes: [
         {
-          couleur: 'white',
+          couleur: 'blanc',
           image: 'cap-white',
           price: '12',
         },
         {
-          couleur: 'black',
+          couleur: 'noir',
           image: 'cap-black',
           price: '12',
         },
         {
-          couleur: 'blue',
+          couleur: 'bleu',
           image: 'cap-blue',
           price: '12',
         },
         {
-          couleur: 'red',
+          couleur: 'rouge',
           image: 'cap-red',
           price: '12',
         },
         {
-          couleur: 'gray',
+          couleur: 'gris',
           image: 'cap-gray',
           price: '12',
         }
@@ -64,7 +64,7 @@ export class ProduitService {
         is_size: false,
         variantes: [
           {
-            couleur: 'white',
+            couleur: 'blanc',
             image: 'cup-white',
             price: '12',
           }
@@ -87,12 +87,12 @@ export class ProduitService {
         is_size: true,
         variantes: [
           {
-            couleur: 'white',
+            couleur: 'blanc',
             image: 'tshirt-white',
             price: '12',
           },
           {
-            couleur: 'black',
+            couleur: 'noir',
             image: 'tshirt-black',
             price: '12',
           },
@@ -102,7 +102,7 @@ export class ProduitService {
             price: '12',
           },
           {
-            couleur: 'red',
+            couleur: 'rouge',
             image: 'tshirt-red',
             price: '12',
           },
@@ -128,25 +128,25 @@ export class ProduitService {
         min_price: "25.00",
         max_price: "35.00",
         is_size: true,
-        size : ['Newborn','6 Months', '12 Months', '18 Months' ],
+        size : ['Nouveau Née','6 Mois', '12 Mois', '18 Mois' ],
         variantes: [
           {
-            couleur: 'white',
-            image: 'bd-white',
+            couleur: 'blanc',
+            image: 'bd-blanc',
             price: '12',
           },
           {
-            couleur: 'black',
-            image: 'bd-black',
+            couleur: 'noir',
+            image: 'bd-noir',
             price: '12',
           },
           {
-            couleur: 'red',
-            image: 'nd-red',
+            couleur: 'rouge',
+            image: 'bd-rouge',
             price: '12',
           },
           {
-            couleur: 'washed_yellow',
+            couleur: 'jaune_délavé',
             image: 'bd-washed_yellow',
             price: '12',
           },
@@ -170,27 +170,27 @@ export class ProduitService {
         size : ['S','M', 'L', 'XL', '2XL', '3XL' ],
         variantes: [
           {
-            couleur: 'white',
+            couleur: 'blanc',
             image: 'tb-white',
             price: '12',
           },
           {
-            couleur: 'black',
+            couleur: 'noir',
             image: 'tb-black',
             price: '12',
           },
           {
-            couleur: 'red',
+            couleur: 'rouge',
             image: 'tb-red',
             price: '12',
           },
           {
-            couleur: 'blue',
+            couleur: 'bleu',
             image: 'tb-washed_yellow',
             price: '12',
           },
           {
-            couleur: 'green',
+            couleur: 'vert',
             image: 'tb-green',
             price: '12',
           }
